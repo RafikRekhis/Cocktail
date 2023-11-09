@@ -1,10 +1,11 @@
-package fr.enseirb.gl.cocktail
+package fr.enseirb.gl.cocktail.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import fr.enseirb.gl.cocktail.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
