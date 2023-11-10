@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import fr.enseirb.gl.cocktail.activities.CocktailDetailsActivity
+import fr.enseirb.gl.cocktail.adapters.CategoriesAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentHomeBinding
 import fr.enseirb.gl.cocktail.models.Category
 import fr.enseirb.gl.cocktail.models.Drink
@@ -19,7 +21,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var randomCocktail: Drink
-    private lateinit var categories: List<Category>
+    private lateinit var categoriesAdapter: CategoriesAdapter
 
     companion object {
         const val COCKTAIL_ID = "cocktail_id"
@@ -47,16 +49,22 @@ class HomeFragment : Fragment() {
         observeRandomCocktail()
         onRandomCocktailClick()
 
+        prepareCategoriesRecyclerView()
         homeViewModel.getCategories()
         observeCategories()
     }
 
+    private fun prepareCategoriesRecyclerView() {
+        categoriesAdapter = CategoriesAdapter()
+        binding.categoriesRecyclerview.apply {
+            layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
+            adapter = categoriesAdapter
+        }
+    }
+
     private fun observeCategories() {
         homeViewModel.observeCategories().observe(viewLifecycleOwner) { categories ->
-            this.categories = categories
-            categories.forEach { category ->
-                Log.d("test", category.strCategory)
-            }
+            categoriesAdapter.setCategories(categories)
         }
     }
 
