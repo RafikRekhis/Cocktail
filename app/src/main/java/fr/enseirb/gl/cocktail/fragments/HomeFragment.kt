@@ -2,6 +2,7 @@ package fr.enseirb.gl.cocktail.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import fr.enseirb.gl.cocktail.activities.CocktailDetailsActivity
 import fr.enseirb.gl.cocktail.databinding.FragmentHomeBinding
+import fr.enseirb.gl.cocktail.models.Category
 import fr.enseirb.gl.cocktail.models.Drink
 import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
 
@@ -17,6 +19,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var randomCocktail: Drink
+    private lateinit var categories: List<Category>
 
     companion object {
         const val COCKTAIL_ID = "cocktail_id"
@@ -43,6 +46,18 @@ class HomeFragment : Fragment() {
         homeViewModel.getRandomCocktail()
         observeRandomCocktail()
         onRandomCocktailClick()
+
+        homeViewModel.getCategories()
+        observeCategories()
+    }
+
+    private fun observeCategories() {
+        homeViewModel.observeCategories().observe(viewLifecycleOwner) { categories ->
+            this.categories = categories
+            categories.forEach { category ->
+                Log.d("test", category.strCategory)
+            }
+        }
     }
 
     private fun onRandomCocktailClick() {

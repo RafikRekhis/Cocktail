@@ -1,5 +1,6 @@
 package fr.enseirb.gl.cocktail.services
 
+import fr.enseirb.gl.cocktail.models.CategoryList
 import fr.enseirb.gl.cocktail.models.CocktailList
 import retrofit2.Call
 import retrofit2.http.GET
@@ -12,4 +13,7 @@ interface CocktailApi {
 
     @GET("lookup.php")
     fun getCocktailDetails(@Query("i") id:String): Call<CocktailList>
+
+    @GET("list.php?c=list")
+    fun getCocktailCategories(): Call<CategoryList>
 }
