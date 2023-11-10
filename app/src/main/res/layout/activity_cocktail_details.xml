@@ -18,6 +18,8 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             android:theme="@style/CustomToolbarTheme"
+            app:collapsedTitleTextColor="@color/white"
+            app:expandedTitleTextColor="@color/white"
             app:contentScrim="@color/accent"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
             app:title="Cocktail name">
@@ -38,6 +40,17 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/favorites"
+        app:backgroundTint="@color/accent"
+        app:layout_anchor="@id/appBar"
+        app:layout_anchorGravity="bottom|end"
+        app:tint = "@color/white"
+        android:layout_marginEnd="@dimen/_10sdp" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -68,8 +81,7 @@
                     android:drawablePadding="5dp"
                     android:text="Category : "
                     android:textColor="@color/g_black"
-                    android:textSize="14sp"
-                    android:visibility="invisible" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_glass_info"
@@ -81,8 +93,7 @@
                     android:drawablePadding="5dp"
                     android:text="Glass : "
                     android:textColor="@color/g_black"
-                    android:textSize="14sp"
-                    android:visibility="invisible" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -90,11 +101,12 @@
                 android:id="@+id/tv_instructions"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:text="- Instructions : "
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/main_font"
                 android:includeFontPadding="false"
-                android:textColor="@color/black"
+                android:textColor="@color/g_black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
