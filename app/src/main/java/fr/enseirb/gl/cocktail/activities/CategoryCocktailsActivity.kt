@@ -1,5 +1,6 @@
 package fr.enseirb.gl.cocktail.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,7 +29,6 @@ class CategoryCocktailsActivity : AppCompatActivity() {
             binding.tvCategoryCount.text = "${categoryCocktails.size} cocktails"
             categoryCocktailsAdapter.setCocktails(categoryCocktails)
         }
-
     }
 
     private fun prepareRecyclerView() {
@@ -36,6 +36,7 @@ class CategoryCocktailsActivity : AppCompatActivity() {
         binding.rvCategoryCocktails.apply {
             layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
             adapter = categoryCocktailsAdapter
+            //add on item click listener
         }
     }
 }
