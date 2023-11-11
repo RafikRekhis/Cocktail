@@ -1,15 +1,19 @@
 package fr.enseirb.gl.cocktail.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.adapters.SearchCocktailsAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentSearchBinding
 import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
@@ -39,6 +43,17 @@ class SearchFragment : Fragment() {
         }
 
         observeSearchCocktails()
+
+        var searchJob: Job? = null
+        binding.etSearch.addTextChangedListener { searchQuery ->
+            searchJob?.cancel()
+            searchJob = lifecycleScope.launch {
+                delay(625)
+                if (searchQuery.toString().isNotEmpty()) {
+                    viewModel.searchCocktailsByName(searchQuery.toString())
+                }
+            }
+        }
     }
 
     private fun observeSearchCocktails() {
@@ -49,7 +64,7 @@ class SearchFragment : Fragment() {
 
     private fun searchCocktails() {
         val cocktailName = binding.etSearch.text.toString()
-        if(cocktailName.isNotEmpty()) {
+        if (cocktailName.isNotEmpty()) {
             viewModel.searchCocktailsByName(cocktailName)
         }
     }
