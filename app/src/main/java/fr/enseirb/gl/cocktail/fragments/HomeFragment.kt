@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import fr.enseirb.gl.cocktail.activities.CategoryCocktailsActivity
 import fr.enseirb.gl.cocktail.activities.CocktailDetailsActivity
 import fr.enseirb.gl.cocktail.adapters.CategoriesAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentHomeBinding
@@ -27,6 +28,7 @@ class HomeFragment : Fragment() {
         const val COCKTAIL_ID = "cocktail_id"
         const val COCKTAIL_NAME = "cocktail_name"
         const val COCKTAIL_IMAGE = "cocktail_image"
+        const val CATEGORY_NAME = "category_name"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +54,15 @@ class HomeFragment : Fragment() {
         prepareCategoriesRecyclerView()
         homeViewModel.getCategories()
         observeCategories()
+        onCategoryClick()
+    }
+
+    private fun onCategoryClick() {
+        categoriesAdapter.onCategoryClick = { category ->
+            val intent = Intent(context, CategoryCocktailsActivity::class.java)
+            intent.putExtra(CATEGORY_NAME, category.strCategory)
+            startActivity(intent)
+        }
     }
 
     private fun prepareCategoriesRecyclerView() {

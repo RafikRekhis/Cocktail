@@ -8,6 +8,7 @@ import fr.enseirb.gl.cocktail.models.Category
 
 class CategoriesAdapter() : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
     private var categories = ArrayList<Category>()
+    var onCategoryClick: ((Category) -> Unit)? = null
 
     fun setCategories(categories: List<Category>) {
         this.categories = categories as ArrayList<Category>
@@ -34,6 +35,10 @@ class CategoriesAdapter() : RecyclerView.Adapter<CategoriesAdapter.CategoryViewH
         holder.itemView.apply {
             val binding = CategoryItemBinding.bind(this)
             binding.categoryName.text = category.strCategory
+        }
+
+        holder.itemView.setOnClickListener {
+            onCategoryClick?.invoke(category)
         }
     }
 }
