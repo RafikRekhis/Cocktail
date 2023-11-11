@@ -2,7 +2,6 @@ package fr.enseirb.gl.cocktail.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,6 @@ import fr.enseirb.gl.cocktail.activities.CategoryCocktailsActivity
 import fr.enseirb.gl.cocktail.activities.CocktailDetailsActivity
 import fr.enseirb.gl.cocktail.adapters.CategoriesAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentHomeBinding
-import fr.enseirb.gl.cocktail.models.Category
 import fr.enseirb.gl.cocktail.models.Drink
 import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
 
