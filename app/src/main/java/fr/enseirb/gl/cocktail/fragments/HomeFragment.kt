@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.activities.CategoryCocktailsActivity
 import fr.enseirb.gl.cocktail.activities.CocktailDetailsActivity
 import fr.enseirb.gl.cocktail.adapters.CategoriesAdapter
@@ -53,6 +55,14 @@ class HomeFragment : Fragment() {
         homeViewModel.getCategories()
         observeCategories()
         onCategoryClick()
+
+        onSearchIconClick()
+    }
+
+    private fun onSearchIconClick() {
+        binding.iconSearch.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
     }
 
     private fun onCategoryClick() {
