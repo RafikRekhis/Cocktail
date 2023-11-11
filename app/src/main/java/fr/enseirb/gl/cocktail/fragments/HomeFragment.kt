@@ -56,14 +56,14 @@ class HomeFragment : Fragment() {
         observeCategories()
         onCategoryClick()
 
-        onSearchIconClick()
+//        onSearchIconClick()
     }
 
-    private fun onSearchIconClick() {
-        binding.iconSearch.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
-        }
-    }
+//    private fun onSearchIconClick() {
+//        binding.iconSearch.setOnClickListener {
+//            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+//        }
+//    }
 
     private fun onCategoryClick() {
         categoriesAdapter.onCategoryClick = { category ->

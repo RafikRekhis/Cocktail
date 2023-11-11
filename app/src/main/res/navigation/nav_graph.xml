@@ -9,10 +9,22 @@
         android:id="@+id/homeFragment"
         android:name="fr.enseirb.gl.cocktail.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ingredientsFragment"
+            app:destination="@id/ingredientsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_glassFragment"
+            app:destination="@id/glassFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_alcoholFragment"
+            app:destination="@id/alcoholFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -29,4 +41,24 @@
         android:name="fr.enseirb.gl.cocktail.fragments.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="fr.enseirb.gl.cocktail.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/ingredientsFragment"
+        android:name="fr.enseirb.gl.cocktail.fragments.IngredientsFragment"
+        android:label="fragment_ingredients"
+        tools:layout="@layout/fragment_ingredients" />
+    <fragment
+        android:id="@+id/glassFragment"
+        android:name="fr.enseirb.gl.cocktail.fragments.GlassFragment"
+        android:label="fragment_glass"
+        tools:layout="@layout/fragment_glass" />
+    <fragment
+        android:id="@+id/alcoholFragment"
+        android:name="fr.enseirb.gl.cocktail.fragments.AlcoholFragment"
+        android:label="fragment_alcohol"
+        tools:layout="@layout/fragment_alcohol" />
 </navigation>
