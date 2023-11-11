@@ -16,6 +16,7 @@ import retrofit2.Response
 class HomeViewModel() : ViewModel() {
     private var randomCocktailLiveData = MutableLiveData<Drink>()
     private var categoriesLiveData = MutableLiveData<List<Category>>()
+    private var searchedCocktailsLiveData = MutableLiveData<List<Drink>>()
 
     fun getRandomCocktail() {
         RetrofitInstance.api.getRandomCocktail().enqueue(object : Callback<CocktailList> {
@@ -60,5 +61,26 @@ class HomeViewModel() : ViewModel() {
 
     fun observeCategories(): LiveData<List<Category>> {
         return categoriesLiveData
+    }
+
+    fun searchCocktailsByName(cocktailName: String) {
+        RetrofitInstance.api.getCocktailsByName(cocktailName).enqueue(object : Callback<CocktailList> {
+            override fun onResponse(
+                call: Call<CocktailList>,
+                response: Response<CocktailList>
+            ) {
+                response.body()?.let {cocktailList ->
+                    searchedCocktailsLiveData.postValue(cocktailList.drinks)
+                }
+            }
+
+            override fun onFailure(call: Call<CocktailList>, t: Throwable) {
+                Log.d("HomeFragment", "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun observeSearchedCocktails(): LiveData<List<Drink>> {
+        return searchedCocktailsLiveData
     }
 }

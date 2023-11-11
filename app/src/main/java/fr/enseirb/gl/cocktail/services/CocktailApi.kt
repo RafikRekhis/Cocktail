@@ -20,4 +20,7 @@ interface CocktailApi {
 
     @GET("filter.php")
     fun getCocktailsByCategory(@Query("c") categoryName: String): Call<CocktailByCategoryList>
+
+    @GET("search.php")
+    fun getCocktailsByName(@Query("s") cocktailName: String): Call<CocktailList>
 }
