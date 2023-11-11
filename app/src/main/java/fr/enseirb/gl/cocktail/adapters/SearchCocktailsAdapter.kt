@@ -41,6 +41,8 @@ class SearchCocktailsAdapter :
             binding.tvCocktailName.text = cocktail.strDrink
             Glide.with(this)
                 .load(cocktail.strDrinkThumb)
+                .placeholder(android.R.drawable.progress_indeterminate_horizontal)
+                .error(android.R.drawable.stat_notify_error)
                 .into(binding.ivCocktailImage)
         }
 
