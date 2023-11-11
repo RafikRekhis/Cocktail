@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import fr.enseirb.gl.cocktail.models.Category
+import fr.enseirb.gl.cocktail.models.CategoryList
 import fr.enseirb.gl.cocktail.models.CocktailList
 import fr.enseirb.gl.cocktail.models.Drink
 import fr.enseirb.gl.cocktail.services.RetrofitInstance
@@ -13,6 +15,7 @@ import retrofit2.Response
 
 class HomeViewModel() : ViewModel() {
     private var randomCocktailLiveData = MutableLiveData<Drink>()
+    private var categoriesLiveData = MutableLiveData<List<Category>>()
 
     fun getRandomCocktail() {
         RetrofitInstance.api.getRandomCocktail().enqueue(object : Callback<CocktailList> {
@@ -36,5 +39,26 @@ class HomeViewModel() : ViewModel() {
 
     fun observeRandomCocktail(): LiveData<Drink> {
         return randomCocktailLiveData
+    }
+
+    fun getCategories() {
+        RetrofitInstance.api.getCocktailCategories().enqueue(object : Callback<CategoryList> {
+            override fun onResponse(
+                call: Call<CategoryList>,
+                response: Response<CategoryList>
+            ) {
+                response.body()?.let {categoryList ->
+                    categoriesLiveData.postValue(categoryList.drinks)
+                }
+            }
+
+            override fun onFailure(call: Call<CategoryList>, t: Throwable) {
+                Log.d("HomeFragment", "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun observeCategories(): LiveData<List<Category>> {
+        return categoriesLiveData
     }
 }
