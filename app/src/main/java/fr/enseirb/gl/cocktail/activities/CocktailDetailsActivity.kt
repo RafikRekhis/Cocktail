@@ -1,11 +1,15 @@
 package fr.enseirb.gl.cocktail.activities
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import fr.enseirb.gl.cocktail.databinding.ActivityCocktailDetailsBinding
 import fr.enseirb.gl.cocktail.fragments.HomeFragment
+import fr.enseirb.gl.cocktail.models.Drink
+import fr.enseirb.gl.cocktail.models.SavedCocktail
 import fr.enseirb.gl.cocktail.mvvm.CocktailDetailsViewModel
 
 class CocktailDetailsActivity : AppCompatActivity() {
@@ -15,12 +19,14 @@ class CocktailDetailsActivity : AppCompatActivity() {
     private lateinit var cocktailImage: String
     private lateinit var cocktailDetailsViewModel: CocktailDetailsViewModel
 
+    private val maxFavorites = 10
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCocktailDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        cocktailDetailsViewModel = CocktailDetailsViewModel()
+        cocktailDetailsViewModel = CocktailDetailsViewModel( getSharedPreferences("sharedPref", MODE_PRIVATE))
 
         getCocktailDetailsFromIntent()
         setDetailsInViews()
@@ -28,10 +34,24 @@ class CocktailDetailsActivity : AppCompatActivity() {
         onLoading()
         cocktailDetailsViewModel.getCocktailDetails(cocktailId)
         observeCocktailDetails()
+
+        onAddFavoriteClick()
     }
+    private var drinkToSave:SavedCocktail?=null
+    private fun onAddFavoriteClick() {
+        binding.fabAddFavorite.setOnClickListener {
+            drinkToSave?.let { it1 -> cocktailDetailsViewModel.addCocktailToFavorite(it1,maxFavorites)
+            Toast.makeText(this, "Cocktail added to favorites , max favorites =  $maxFavorites" , Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 
     private fun observeCocktailDetails() {
         cocktailDetailsViewModel.observeCocktailDetails().observe(this) { cocktailDetails ->
+
+            drinkToSave = SavedCocktail(cocktailDetails.idDrink, cocktailDetails.strDrinkThumb, cocktailDetails.strDrink)
+
             binding.tvCategoryInfo.text = cocktailDetails.strCategory
             binding.tvGlassInfo.text = cocktailDetails.strGlass
             binding.tvContent.text = cocktailDetails.strInstructions
