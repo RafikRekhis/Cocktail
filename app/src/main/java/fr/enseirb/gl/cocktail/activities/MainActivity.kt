@@ -12,10 +12,15 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.databinding.ActivityMainBinding
+import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+
+    val viewModel : HomeViewModel by lazy {
+        HomeViewModel(getSharedPreferences("sharedPref", MODE_PRIVATE))
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

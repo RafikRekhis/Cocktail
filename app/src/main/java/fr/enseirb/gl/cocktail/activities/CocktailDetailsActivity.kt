@@ -50,7 +50,7 @@ class CocktailDetailsActivity : AppCompatActivity() {
     private fun observeCocktailDetails() {
         cocktailDetailsViewModel.observeCocktailDetails().observe(this) { cocktailDetails ->
 
-            drinkToSave = SavedCocktail(cocktailDetails.idDrink, cocktailDetails.strDrinkThumb, cocktailDetails.strDrink)
+            drinkToSave = SavedCocktail(cocktailDetails.idDrink, cocktailDetails.strDrink, cocktailDetails.strDrinkThumb)
 
             binding.tvCategoryInfo.text = cocktailDetails.strCategory
             binding.tvGlassInfo.text = cocktailDetails.strGlass

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import fr.enseirb.gl.cocktail.activities.MainActivity
 import fr.enseirb.gl.cocktail.adapters.SearchCocktailsAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentSearchBinding
 import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
@@ -22,7 +23,9 @@ class SearchFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = HomeViewModel()
+        //viewModel = HomeViewModel()
+
+        viewModel = (activity as MainActivity).viewModel
     }
 
     override fun onCreateView(

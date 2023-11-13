@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.activities.CategoryCocktailsActivity
 import fr.enseirb.gl.cocktail.activities.CocktailDetailsActivity
+import fr.enseirb.gl.cocktail.activities.MainActivity
 import fr.enseirb.gl.cocktail.adapters.CategoriesAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentHomeBinding
 import fr.enseirb.gl.cocktail.models.Drink
@@ -33,7 +34,8 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        homeViewModel = HomeViewModel()
+        //homeViewModel = HomeViewModel( )
+        homeViewModel = (activity as MainActivity).viewModel
     }
 
     override fun onCreateView(

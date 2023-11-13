@@ -1,24 +1,29 @@
 package fr.enseirb.gl.cocktail.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import fr.enseirb.gl.cocktail.R
+import fr.enseirb.gl.cocktail.activities.MainActivity
+import fr.enseirb.gl.cocktail.adapters.FavoritesCocktailsAdapter
+import fr.enseirb.gl.cocktail.databinding.FragmentFavoritesBinding
+import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FavoritesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class FavoritesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var binding: FragmentFavoritesBinding
+    private lateinit var viewModel: HomeViewModel
+    private lateinit var favoritesCocktailsAdapter: FavoritesCocktailsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel = (activity as MainActivity).viewModel
 
     }
 
@@ -27,21 +32,32 @@ class FavoritesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorites, container, false)
+        binding = FragmentFavoritesBinding.inflate(inflater)
+        return binding.root
+    }
+    override  fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.getFavorites()
+        prepareRecyclerView()
+        observeFavorites()
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FavoritesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FavoritesFragment()
+    private fun prepareRecyclerView() {
+        favoritesCocktailsAdapter = FavoritesCocktailsAdapter()
+        binding.recyclerViewFavorites.apply {
+            layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+            adapter = favoritesCocktailsAdapter
+        }
     }
+
+    private fun observeFavorites() {
+        // TODO : change requireActivity() with a better solution
+        viewModel.observeFavorites().observe(requireActivity()) { cocktails ->
+            favoritesCocktailsAdapter.differ.submitList(cocktails)
+        }
+
+    }
+
+
 }

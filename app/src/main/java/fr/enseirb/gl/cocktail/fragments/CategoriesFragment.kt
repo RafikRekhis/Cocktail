@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import fr.enseirb.gl.cocktail.activities.CategoryCocktailsActivity
+import fr.enseirb.gl.cocktail.activities.MainActivity
 import fr.enseirb.gl.cocktail.adapters.CategoriesAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentCategoriesBinding
 import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
@@ -20,7 +21,9 @@ class CategoriesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = HomeViewModel()
+        //viewModel = HomeViewModel()
+
+        viewModel = (activity as MainActivity).viewModel
     }
 
     override fun onCreateView(
