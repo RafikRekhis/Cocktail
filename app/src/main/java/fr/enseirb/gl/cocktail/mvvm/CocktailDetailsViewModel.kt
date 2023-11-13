@@ -41,7 +41,7 @@ class CocktailDetailsViewModel(private val sharedPreferences: SharedPreferences)
         return cocktailDetailsLiveData
     }
 
-    fun addCocktailToFavorite(cocktail: SavedCocktail, maxFavorites: Int) {
+    fun addCocktailToFavorite(cocktail: SavedCocktail) {
 
         // Récupérer la liste actuelle des cocktails favoris depuis SharedPreferences
         val favoritesJson = sharedPreferences.getString("favorites", null)
@@ -51,14 +51,16 @@ class CocktailDetailsViewModel(private val sharedPreferences: SharedPreferences)
             mutableListOf()
         }
 
+        // Vérifier si le cocktail existe déjà dans la liste
+        val existingCocktail = favoritesList.find { it.idDrink == cocktail.idDrink }
+
+        // Si le cocktail existe, le supprimer de la liste
+        if (existingCocktail != null) {
+            favoritesList.remove(existingCocktail)
+        }
+
         // Ajouter le nouveau cocktail au début de la liste
         favoritesList.add(0, cocktail)
-
-        // Limiter le nombre de favoris à maxFavorites
-        if (favoritesList.size > maxFavorites) {
-            // Supprimer le dernier élément s'il y en a trop
-            favoritesList.removeAt(favoritesList.size - 1)
-        }
 
         // Convertir la liste en format JSON
         val newFavoritesJson = SavedCocktail.toJsonList(favoritesList)

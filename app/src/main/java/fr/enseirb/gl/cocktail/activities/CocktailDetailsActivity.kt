@@ -19,7 +19,6 @@ class CocktailDetailsActivity : AppCompatActivity() {
     private lateinit var cocktailImage: String
     private lateinit var cocktailDetailsViewModel: CocktailDetailsViewModel
 
-    private val maxFavorites = 10
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +39,8 @@ class CocktailDetailsActivity : AppCompatActivity() {
     private var drinkToSave:SavedCocktail?=null
     private fun onAddFavoriteClick() {
         binding.fabAddFavorite.setOnClickListener {
-            drinkToSave?.let { it1 -> cocktailDetailsViewModel.addCocktailToFavorite(it1,maxFavorites)
-            Toast.makeText(this, "Cocktail added to favorites , max favorites =  $maxFavorites" , Toast.LENGTH_SHORT).show()
+            drinkToSave?.let { it1 -> cocktailDetailsViewModel.addCocktailToFavorite(it1)
+            Toast.makeText(this, "Cocktail added to favorites" , Toast.LENGTH_SHORT).show()
             }
         }
     }
