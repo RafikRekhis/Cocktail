@@ -8,6 +8,8 @@ import fr.enseirb.gl.cocktail.models.Category
 import fr.enseirb.gl.cocktail.models.CategoryList
 import fr.enseirb.gl.cocktail.models.CocktailList
 import fr.enseirb.gl.cocktail.models.Drink
+import fr.enseirb.gl.cocktail.models.Ingredient
+import fr.enseirb.gl.cocktail.models.IngredientList
 import fr.enseirb.gl.cocktail.services.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,6 +19,7 @@ class HomeViewModel() : ViewModel() {
     private var randomCocktailLiveData = MutableLiveData<Drink>()
     private var categoriesLiveData = MutableLiveData<List<Category>>()
     private var searchedCocktailsLiveData = MutableLiveData<List<Drink>>()
+    private var ingredientsLiveData = MutableLiveData<List<Ingredient>>()
 
     fun getRandomCocktail() {
         RetrofitInstance.api.getRandomCocktail().enqueue(object : Callback<CocktailList> {
@@ -82,5 +85,26 @@ class HomeViewModel() : ViewModel() {
 
     fun observeSearchedCocktails(): LiveData<List<Drink>> {
         return searchedCocktailsLiveData
+    }
+
+    fun getIngredients() {
+        RetrofitInstance.api.getCocktailIngredients().enqueue(object : Callback<IngredientList> {
+            override fun onResponse(
+                call: Call<IngredientList>,
+                response: Response<IngredientList>
+            ) {
+                response.body()?.let {ingredientList ->
+                    ingredientsLiveData.postValue(ingredientList.drinks)
+                }
+            }
+
+            override fun onFailure(call: Call<IngredientList>, t: Throwable) {
+                Log.d("HomeFragment", "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun observeIngredients(): LiveData<List<Ingredient>> {
+        return ingredientsLiveData
     }
 }
