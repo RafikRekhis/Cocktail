@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import fr.enseirb.gl.cocktail.activities.IngredientCocktailsActivity
+import fr.enseirb.gl.cocktail.activities.MainActivity
 import fr.enseirb.gl.cocktail.adapters.IngredientsAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentIngredientsBinding
 import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
@@ -20,7 +21,7 @@ class IngredientsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = HomeViewModel()
+        viewModel = (activity as MainActivity).viewModel
     }
 
     override fun onCreateView(
