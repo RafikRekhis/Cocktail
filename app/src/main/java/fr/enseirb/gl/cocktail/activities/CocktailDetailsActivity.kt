@@ -1,12 +1,21 @@
 package fr.enseirb.gl.cocktail.activities
 
+import android.content.SharedPreferences
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.databinding.ActivityCocktailDetailsBinding
 import fr.enseirb.gl.cocktail.fragments.HomeFragment
+import fr.enseirb.gl.cocktail.models.Drink
+import fr.enseirb.gl.cocktail.models.SavedCocktail
 import fr.enseirb.gl.cocktail.mvvm.CocktailDetailsViewModel
+import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
 
 class CocktailDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCocktailDetailsBinding
@@ -14,13 +23,18 @@ class CocktailDetailsActivity : AppCompatActivity() {
     private lateinit var cocktailName: String
     private lateinit var cocktailImage: String
     private lateinit var cocktailDetailsViewModel: CocktailDetailsViewModel
+    private lateinit var viewModel: HomeViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel = HomeViewModel(getSharedPreferences("sharedPref", MODE_PRIVATE))
+
         binding = ActivityCocktailDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        cocktailDetailsViewModel = CocktailDetailsViewModel()
+        cocktailDetailsViewModel = CocktailDetailsViewModel( getSharedPreferences("sharedPref", MODE_PRIVATE))
 
         getCocktailDetailsFromIntent()
         setDetailsInViews()
@@ -28,10 +42,65 @@ class CocktailDetailsActivity : AppCompatActivity() {
         onLoading()
         cocktailDetailsViewModel.getCocktailDetails(cocktailId)
         observeCocktailDetails()
+
+        //onAddFavoriteClick()
+
+        handleFavoritesButton()
+
+
     }
+
+    private var drinkToSave:SavedCocktail?=null
+
+
+    private fun firstColorFavoriteButton() {
+
+
+        drinkToSave?.let { it1 ->
+            Log.d("ooooooooooo", "isFavorite:  bbbbbbbbbb")
+            if (cocktailDetailsViewModel.isFavorite(it1)) {
+                binding.fabAddFavorite.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.red))
+            } else {
+                binding.fabAddFavorite.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))
+            }
+        }
+    }
+
+
+    private fun handleFavoritesButton() {
+        binding.fabAddFavorite.setOnClickListener {
+            drinkToSave?.let { it1 ->
+                if (!cocktailDetailsViewModel.isFavorite(it1) ) {
+                    cocktailDetailsViewModel.addCocktailToFavorite(it1)
+                    binding.fabAddFavorite.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.red))
+                    Toast.makeText(this, "Cocktail added to favorites", Toast.LENGTH_SHORT).show()
+                } else {
+                    cocktailDetailsViewModel.removeFavorite(it1)
+                    binding.fabAddFavorite.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))
+                    Toast.makeText(this, "Cocktail removed from favorites", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+
+
+    /*private fun onAddFavoriteClick() {
+        binding.fabAddFavorite.setOnClickListener {
+            drinkToSave?.let { it1 -> cocktailDetailsViewModel.addCocktailToFavorite(it1)
+            Toast.makeText(this, "Cocktail added to favorites" , Toast.LENGTH_SHORT).show()
+            }
+        }
+    }*/
+
 
     private fun observeCocktailDetails() {
         cocktailDetailsViewModel.observeCocktailDetails().observe(this) { cocktailDetails ->
+
+            drinkToSave = SavedCocktail(cocktailDetails.idDrink, cocktailDetails.strDrink, cocktailDetails.strDrinkThumb)
+
+            firstColorFavoriteButton()
+
             binding.tvCategoryInfo.text = cocktailDetails.strCategory
             binding.tvGlassInfo.text = cocktailDetails.strGlass
             binding.tvContent.text = cocktailDetails.strInstructions
