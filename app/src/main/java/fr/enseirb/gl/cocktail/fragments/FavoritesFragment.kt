@@ -42,6 +42,11 @@ class FavoritesFragment : Fragment() {
         observeFavorites()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getFavorites()
+    }
+
     private fun prepareRecyclerView() {
         favoritesCocktailsAdapter = FavoritesCocktailsAdapter()
         binding.recyclerViewFavorites.apply {

@@ -1,12 +1,15 @@
 package fr.enseirb.gl.cocktail.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import fr.enseirb.gl.cocktail.activities.CocktailDetailsActivity
 import fr.enseirb.gl.cocktail.databinding.CocktailItemBinding
+import fr.enseirb.gl.cocktail.fragments.HomeFragment
 import fr.enseirb.gl.cocktail.models.SavedCocktail
 
 class FavoritesCocktailsAdapter : RecyclerView.Adapter<FavoritesCocktailsAdapter.FavoritesCocktailsViewHolder>() {
@@ -40,6 +43,14 @@ class FavoritesCocktailsAdapter : RecyclerView.Adapter<FavoritesCocktailsAdapter
             .load(cocktail.strDrinkThumb)
             .into(holder.binding.ivCocktailImage)
         holder.binding.tvCocktailName.text = cocktail.strDrink
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, CocktailDetailsActivity::class.java)
+            intent.putExtra(HomeFragment.COCKTAIL_ID, cocktail.idDrink)
+            intent.putExtra(HomeFragment.COCKTAIL_NAME, cocktail.strDrink)
+            intent.putExtra(HomeFragment.COCKTAIL_IMAGE, cocktail.strDrinkThumb)
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
 

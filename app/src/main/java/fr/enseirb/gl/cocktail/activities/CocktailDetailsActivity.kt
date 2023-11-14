@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -46,8 +47,25 @@ class CocktailDetailsActivity : AppCompatActivity() {
 
         handleFavoritesButton()
 
+
     }
+
     private var drinkToSave:SavedCocktail?=null
+
+
+    private fun firstColorFavoriteButton() {
+
+
+        drinkToSave?.let { it1 ->
+            Log.d("ooooooooooo", "isFavorite:  bbbbbbbbbb")
+            if (cocktailDetailsViewModel.isFavorite(it1)) {
+                binding.fabAddFavorite.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.red))
+            } else {
+                binding.fabAddFavorite.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))
+            }
+        }
+    }
+
 
     private fun handleFavoritesButton() {
         binding.fabAddFavorite.setOnClickListener {
@@ -80,6 +98,8 @@ class CocktailDetailsActivity : AppCompatActivity() {
         cocktailDetailsViewModel.observeCocktailDetails().observe(this) { cocktailDetails ->
 
             drinkToSave = SavedCocktail(cocktailDetails.idDrink, cocktailDetails.strDrink, cocktailDetails.strDrinkThumb)
+
+            firstColorFavoriteButton()
 
             binding.tvCategoryInfo.text = cocktailDetails.strCategory
             binding.tvGlassInfo.text = cocktailDetails.strGlass
