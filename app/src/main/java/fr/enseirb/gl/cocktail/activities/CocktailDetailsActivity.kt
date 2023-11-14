@@ -13,6 +13,7 @@ import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.databinding.ActivityCocktailDetailsBinding
 import fr.enseirb.gl.cocktail.fragments.HomeFragment
 import fr.enseirb.gl.cocktail.models.Drink
+import fr.enseirb.gl.cocktail.models.RecentViewedCocktail
 import fr.enseirb.gl.cocktail.models.SavedCocktail
 import fr.enseirb.gl.cocktail.mvvm.CocktailDetailsViewModel
 import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
@@ -43,6 +44,7 @@ class CocktailDetailsActivity : AppCompatActivity() {
         cocktailDetailsViewModel.getCocktailDetails(cocktailId)
         observeCocktailDetails()
 
+
         //onAddFavoriteClick()
 
         handleFavoritesButton()
@@ -51,13 +53,13 @@ class CocktailDetailsActivity : AppCompatActivity() {
     }
 
     private var drinkToSave:SavedCocktail?=null
+    private var recentDrinkToSave:RecentViewedCocktail?=null
 
 
     private fun firstColorFavoriteButton() {
 
 
         drinkToSave?.let { it1 ->
-            Log.d("ooooooooooo", "isFavorite:  bbbbbbbbbb")
             if (cocktailDetailsViewModel.isFavorite(it1)) {
                 binding.fabAddFavorite.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.red))
             } else {
@@ -83,6 +85,12 @@ class CocktailDetailsActivity : AppCompatActivity() {
         }
     }
 
+    private fun addRecentViewedCocktail() {
+        recentDrinkToSave?.let { it1 ->
+            cocktailDetailsViewModel.addRecentViewedCocktail(it1)
+        }
+    }
+
 
 
     /*private fun onAddFavoriteClick() {
@@ -98,9 +106,12 @@ class CocktailDetailsActivity : AppCompatActivity() {
         cocktailDetailsViewModel.observeCocktailDetails().observe(this) { cocktailDetails ->
 
             drinkToSave = SavedCocktail(cocktailDetails.idDrink, cocktailDetails.strDrink, cocktailDetails.strDrinkThumb)
+            recentDrinkToSave = RecentViewedCocktail(cocktailDetails.idDrink, cocktailDetails.strDrinkThumb)
+
+            addRecentViewedCocktail()
 
             firstColorFavoriteButton()
-
+            binding.collapsingToolbar.title= cocktailDetails.strDrink
             binding.tvCategoryInfo.text = cocktailDetails.strCategory
             binding.tvGlassInfo.text = cocktailDetails.strGlass
             binding.tvContent.text = cocktailDetails.strInstructions
@@ -110,13 +121,13 @@ class CocktailDetailsActivity : AppCompatActivity() {
 
     private fun setDetailsInViews() {
         Glide.with(this).load(cocktailImage).into(binding.imgCocktailDetail)
-        binding.collapsingToolbar.title = cocktailName
+        //binding.collapsingToolbar.title = cocktailName
     }
 
     private fun getCocktailDetailsFromIntent() {
         val intent = intent
         cocktailId = intent.getStringExtra(HomeFragment.COCKTAIL_ID)!!
-        cocktailName = intent.getStringExtra(HomeFragment.COCKTAIL_NAME)!!
+        //cocktailName = intent.getStringExtra(HomeFragment.COCKTAIL_NAME)!!
         cocktailImage = intent.getStringExtra(HomeFragment.COCKTAIL_IMAGE)!!
     }
 

@@ -2,20 +2,25 @@ package fr.enseirb.gl.cocktail.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.activities.CategoryCocktailsActivity
 import fr.enseirb.gl.cocktail.activities.CocktailDetailsActivity
 import fr.enseirb.gl.cocktail.activities.MainActivity
 import fr.enseirb.gl.cocktail.adapters.CategoriesAdapter
+import fr.enseirb.gl.cocktail.adapters.RecentViewedCocktailAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentHomeBinding
 import fr.enseirb.gl.cocktail.models.Drink
+import fr.enseirb.gl.cocktail.models.RecentViewedCocktail
 import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
 
 
@@ -24,6 +29,7 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var randomCocktail: Drink
     private lateinit var categoriesAdapter: CategoriesAdapter
+    private lateinit var recentViewedCocktailAdapter: RecentViewedCocktailAdapter
 
     companion object {
         const val COCKTAIL_ID = "cocktail_id"
@@ -36,6 +42,7 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
         //homeViewModel = HomeViewModel( )
         homeViewModel = (activity as MainActivity).viewModel
+        recentViewedCocktailAdapter = RecentViewedCocktailAdapter()
     }
 
     override fun onCreateView(
@@ -54,11 +61,44 @@ class HomeFragment : Fragment() {
         onRandomCocktailClick()
 
         prepareCategoriesRecyclerView()
+        prepareRecentCocktailRecyclerView()
         homeViewModel.getCategories()
         observeCategories()
         onCategoryClick()
 
+        homeViewModel.getRecentViewedCocktails()
+        observeRecentViewedCocktails()
+
 //        onSearchIconClick()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.getRecentViewedCocktails()
+    }
+
+    private fun prepareRecentCocktailRecyclerView() {
+        binding.lastCocktailsRecyclerview.apply {
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = recentViewedCocktailAdapter
+        }
+    }
+
+
+    private fun observeRecentViewedCocktails() {
+        homeViewModel.observeRecentViewedCocktails().observe(viewLifecycleOwner
+        ) { recentCocktailList ->
+            if (recentCocktailList.isEmpty()) {
+                // If the recentCocktailList is empty, hide the part where recent viewed cocktails are displayed
+                binding.lastCocktailsTextview.visibility = View.GONE
+                binding.lastCocktailsRecyclerview.visibility = View.GONE
+            } else {
+                // If the recentCocktailList is not empty, show the part where recent viewed cocktails are displayed
+                binding.lastCocktailsTextview.visibility = View.VISIBLE
+                binding.lastCocktailsRecyclerview.visibility = View.VISIBLE
+                recentViewedCocktailAdapter.updateRecentViewedCocktails(recentCocktailList as MutableList<RecentViewedCocktail>)
+            }
+        }
     }
 
 //    private fun onSearchIconClick() {

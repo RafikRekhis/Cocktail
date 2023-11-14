@@ -13,6 +13,7 @@ import fr.enseirb.gl.cocktail.models.Drink
 import fr.enseirb.gl.cocktail.models.SavedCocktail
 import fr.enseirb.gl.cocktail.models.Ingredient
 import fr.enseirb.gl.cocktail.models.IngredientList
+import fr.enseirb.gl.cocktail.models.RecentViewedCocktail
 import fr.enseirb.gl.cocktail.services.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,6 +26,7 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
     private var ingredientsLiveData = MutableLiveData<List<Ingredient>>()
 
     private var favoritesLiveData = MutableLiveData<List<SavedCocktail>>()
+    private var recentViewedCocktailsLiveData = MutableLiveData<List<RecentViewedCocktail>>()
 
 
     fun getFavorites() {
@@ -36,6 +38,25 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
             mutableListOf()
         }
         favoritesLiveData.postValue(favoritesList)
+    }
+    fun observeFavorites(): LiveData<List<SavedCocktail>> {
+
+        return favoritesLiveData
+    }
+
+    fun getRecentViewedCocktails() {
+        //obtenir la liste des cocktails récemment vus depuis SharedPreferences
+        val recentViewedCocktailsJson = sharedPreferences.getString("recentViewedCocktails", null)
+        val recentViewedCocktailsList: MutableList<RecentViewedCocktail> = if (recentViewedCocktailsJson != null) {
+            RecentViewedCocktail.fromJsonList(recentViewedCocktailsJson)
+        } else {
+            mutableListOf()
+        }
+        recentViewedCocktailsLiveData.postValue(recentViewedCocktailsList)
+    }
+
+    fun observeRecentViewedCocktails(): LiveData<List<RecentViewedCocktail>> {
+        return recentViewedCocktailsLiveData
     }
 
 
@@ -106,10 +127,7 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
         return searchedCocktailsLiveData
     }
 
-    fun observeFavorites(): LiveData<List<SavedCocktail>> {
 
-        return favoritesLiveData
-    }
 
     fun getIngredients() {
         RetrofitInstance.api.getCocktailIngredients().enqueue(object : Callback<IngredientList> {
@@ -131,4 +149,5 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
     fun observeIngredients(): LiveData<List<Ingredient>> {
         return ingredientsLiveData
     }
+
 }

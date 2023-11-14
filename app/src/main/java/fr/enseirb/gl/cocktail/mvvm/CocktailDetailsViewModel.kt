@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import fr.enseirb.gl.cocktail.models.CocktailList
 import fr.enseirb.gl.cocktail.models.Drink
+import fr.enseirb.gl.cocktail.models.RecentViewedCocktail
 import fr.enseirb.gl.cocktail.models.SavedCocktail
 import fr.enseirb.gl.cocktail.services.RetrofitInstance
 import retrofit2.Call
@@ -94,6 +95,40 @@ class CocktailDetailsViewModel(private val sharedPreferences: SharedPreferences)
             }
         }
         return false
+    }
+
+    fun addRecentViewedCocktail(recentViewedCocktail: RecentViewedCocktail) {
+        Log.d("ooooooooooo", "aaaa:${recentViewedCocktail.idDrink}")
+        // Récupérer la liste actuelle des cocktails récemment vus depuis SharedPreferences
+        val recentViewedCocktailsJson = sharedPreferences.getString("recentViewedCocktails", null)
+        val maxViewedCocktailsNumber = sharedPreferences.getInt("maxRecentItems", 5)
+        val recentViewedCocktailsList: MutableList<RecentViewedCocktail> = if (recentViewedCocktailsJson != null) {
+            RecentViewedCocktail.fromJsonList(recentViewedCocktailsJson)
+        } else {
+            mutableListOf()
+        }
+
+        // Vérifier si le cocktail existe déjà dans la liste
+        val existingCocktail = recentViewedCocktailsList.find { it.idDrink == recentViewedCocktail.idDrink }
+
+        // Si le cocktail existe, le supprimer de la liste
+        if (existingCocktail != null) {
+            recentViewedCocktailsList.remove(existingCocktail)
+        }
+
+        // Ajouter le nouveau cocktail au début de la liste
+        recentViewedCocktailsList.add(0, recentViewedCocktail)
+
+        // Si la liste contient plus de MAX_RECENT_ITEMS éléments, supprimer le dernier élément
+        if (recentViewedCocktailsList.size > maxViewedCocktailsNumber) {
+            recentViewedCocktailsList.removeAt(recentViewedCocktailsList.size - 1)
+        }
+
+        // Convertir la liste en format JSON
+        val newRecentViewedCocktailsJson = RecentViewedCocktail.toJsonList(recentViewedCocktailsList)
+
+        // Enregistrer la nouvelle liste dans SharedPreferences
+        sharedPreferences.edit().putString("recentViewedCocktails", newRecentViewedCocktailsJson).apply()
     }
 
 
