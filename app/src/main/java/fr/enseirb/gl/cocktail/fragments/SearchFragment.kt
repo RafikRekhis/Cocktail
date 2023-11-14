@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import fr.enseirb.gl.cocktail.activities.MainActivity
 import fr.enseirb.gl.cocktail.adapters.SearchCocktailsAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentSearchBinding
@@ -22,8 +22,6 @@ class SearchFragment : Fragment() {
     private lateinit var searchCocktailsAdapter: SearchCocktailsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //viewModel = HomeViewModel()
 
         viewModel = (activity as MainActivity).viewModel
     }
@@ -54,6 +52,8 @@ class SearchFragment : Fragment() {
                 delay(625)
                 if (searchQuery.toString().isNotEmpty()) {
                     viewModel.searchCocktailsByName(searchQuery.toString())
+                } else {
+                    searchCocktailsAdapter.setCocktails(ArrayList())
                 }
             }
         }
@@ -61,21 +61,23 @@ class SearchFragment : Fragment() {
 
     private fun observeSearchCocktails() {
         viewModel.observeSearchedCocktails().observe(viewLifecycleOwner) { cocktails ->
-            searchCocktailsAdapter.setCocktails(cocktails)
+            if (cocktails == null) {
+                searchCocktailsAdapter.setCocktails(ArrayList())
+            } else {
+                searchCocktailsAdapter.setCocktails(cocktails)
+            }
         }
     }
 
     private fun searchCocktails() {
         val cocktailName = binding.etSearch.text.toString()
-        if (cocktailName.isNotEmpty()) {
-            viewModel.searchCocktailsByName(cocktailName)
-        }
+        viewModel.searchCocktailsByName(cocktailName)
     }
 
     private fun prepareSearchRecyclerView() {
         searchCocktailsAdapter = SearchCocktailsAdapter()
         binding.rvSearch.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
             adapter = searchCocktailsAdapter
         }
     }
