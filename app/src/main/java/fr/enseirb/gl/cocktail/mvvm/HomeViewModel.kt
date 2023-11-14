@@ -35,6 +35,8 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
         favoritesLiveData.postValue(favoritesList)
     }
 
+
+
     fun getRandomCocktail() {
         RetrofitInstance.api.getRandomCocktail().enqueue(object : Callback<CocktailList> {
             override fun onResponse(

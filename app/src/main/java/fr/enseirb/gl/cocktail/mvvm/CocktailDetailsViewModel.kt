@@ -69,5 +69,32 @@ class CocktailDetailsViewModel(private val sharedPreferences: SharedPreferences)
         sharedPreferences.edit().putString("favorites", newFavoritesJson).apply()
     }
 
+    fun removeFavorite(savedCocktail: SavedCocktail){
+        val favoritesJson = sharedPreferences.getString("favorites", null)
+        val favoritesList: MutableList<SavedCocktail> = if (favoritesJson != null) {
+            SavedCocktail.fromJsonList(favoritesJson)
+        } else {
+            mutableListOf()
+        }
+        favoritesList.remove(savedCocktail)
+        val newFavoritesJson = SavedCocktail.toJsonList(favoritesList)
+        sharedPreferences.edit().putString("favorites", newFavoritesJson).apply()
+    }
+
+    fun isFavorite(savedCocktail: SavedCocktail) : Boolean{
+        val favoritesJson = sharedPreferences.getString("favorites", null)
+        val favoritesList: MutableList<SavedCocktail> = if (favoritesJson != null) {
+            SavedCocktail.fromJsonList(favoritesJson)
+        } else {
+            mutableListOf()
+        }
+        favoritesList.forEach{ cocktail ->
+            if (cocktail.idDrink == savedCocktail.idDrink) {
+                return true
+            }
+        }
+        return false
+    }
+
 
 }

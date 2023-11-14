@@ -24,7 +24,6 @@ class FavoritesFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         viewModel = (activity as MainActivity).viewModel
-
     }
 
     override fun onCreateView(
