@@ -1,9 +1,7 @@
 package fr.enseirb.gl.cocktail.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import fr.enseirb.gl.cocktail.adapters.CategoryCocktailsAdapter
 import fr.enseirb.gl.cocktail.databinding.ActivityCategoryCocktailsBinding
@@ -36,7 +34,6 @@ class CategoryCocktailsActivity : AppCompatActivity() {
         binding.rvCategoryCocktails.apply {
             layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
             adapter = categoryCocktailsAdapter
-            //add on item click listener
         }
     }
 }
