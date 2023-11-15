@@ -18,6 +18,17 @@ class CategoryCocktailsActivity : AppCompatActivity() {
         binding = ActivityCategoryCocktailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (intent.getStringExtra(HomeFragment.FILTER_NAME) != null) {
+            binding.toolbarCategory.title = intent.getStringExtra(HomeFragment.FILTER_NAME)
+        }
+
+        //show back icon and return to previous activity
+        setSupportActionBar(binding.toolbarCategory)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.toolbarCategory.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
         prepareRecyclerView()
 
         categoryCocktailsViewModel = CategoryCocktailsViewModel()

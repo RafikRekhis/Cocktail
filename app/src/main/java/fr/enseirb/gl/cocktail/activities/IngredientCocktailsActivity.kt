@@ -18,6 +18,17 @@ class IngredientCocktailsActivity : AppCompatActivity() {
         binding = ActivityIngredientCocktailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (intent.getStringExtra(HomeFragment.FILTER_NAME) != null) {
+            binding.toolbarIngredient.title = "Cocktails made with ${intent.getStringExtra(HomeFragment.FILTER_NAME)}"
+        }
+
+        //show back icon and return to previous activity
+        setSupportActionBar(binding.toolbarIngredient)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.toolbarIngredient.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
         prepareRecyclerView()
 
         ingredientCocktailsViewModel = IngredientCocktailsViewModel()

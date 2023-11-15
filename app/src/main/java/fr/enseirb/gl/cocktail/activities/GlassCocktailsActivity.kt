@@ -18,6 +18,17 @@ class GlassCocktailsActivity : AppCompatActivity() {
         binding = ActivityGlassCocktailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (intent.getStringExtra(HomeFragment.FILTER_NAME) != null) {
+            binding.toolbarGlass.title = "Cocktails served in ${intent.getStringExtra(HomeFragment.FILTER_NAME)}"
+        }
+
+        //show back icon and return to previous activity
+        setSupportActionBar(binding.toolbarGlass)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.toolbarGlass.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
         prepareRecyclerView()
 
         glassCocktailsViewModel = GlassCocktailsViewModel()
