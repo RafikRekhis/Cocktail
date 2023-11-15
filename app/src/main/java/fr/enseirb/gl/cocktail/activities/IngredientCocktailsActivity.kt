@@ -22,7 +22,7 @@ class IngredientCocktailsActivity : AppCompatActivity() {
 
         ingredientCocktailsViewModel = IngredientCocktailsViewModel()
 
-        ingredientCocktailsViewModel.getIngredientCocktails(intent.getStringExtra(HomeFragment.CATEGORY_NAME)!!)
+        ingredientCocktailsViewModel.getIngredientCocktails(intent.getStringExtra(HomeFragment.FILTER_NAME)!!)
         ingredientCocktailsViewModel.observeIngredientCocktails().observe(this) { ingredientCocktails ->
             binding.tvIngredientCount.text = "${ingredientCocktails.size} cocktails"
             ingredientCocktailsAdapter.setCocktails(ingredientCocktails)

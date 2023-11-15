@@ -9,6 +9,8 @@ import fr.enseirb.gl.cocktail.models.Category
 import fr.enseirb.gl.cocktail.models.CategoryList
 import fr.enseirb.gl.cocktail.models.CocktailList
 import fr.enseirb.gl.cocktail.models.Drink
+import fr.enseirb.gl.cocktail.models.Glass
+import fr.enseirb.gl.cocktail.models.GlassList
 import fr.enseirb.gl.cocktail.models.SavedCocktail
 import fr.enseirb.gl.cocktail.models.Ingredient
 import fr.enseirb.gl.cocktail.models.IngredientList
@@ -23,6 +25,7 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
     private var categoriesLiveData = MutableLiveData<List<Category>>()
     private var searchedCocktailsLiveData = MutableLiveData<List<Drink>>()
     private var ingredientsLiveData = MutableLiveData<List<Ingredient>>()
+    private var glassLiveData = MutableLiveData<List<Glass>>()
 
     private var favoritesLiveData = MutableLiveData<List<SavedCocktail>>()
     private var recentViewedCocktailsLiveData = MutableLiveData<List<RecentViewedCocktail>>()
@@ -148,5 +151,26 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
 
     fun observeIngredients(): LiveData<List<Ingredient>> {
         return ingredientsLiveData
+    }
+
+    fun getGlass() {
+        RetrofitInstance.api.getCocktailGlass().enqueue(object : Callback<GlassList> {
+            override fun onResponse(
+                call: Call<GlassList>,
+                response: Response<GlassList>
+            ) {
+                response.body()?.let { glassList ->
+                    glassLiveData.postValue(glassList.drinks)
+                }
+            }
+
+            override fun onFailure(call: Call<GlassList>, t: Throwable) {
+                Log.d("HomeFragment", "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun observeGlass(): LiveData<List<Glass>> {
+        return glassLiveData
     }
 }

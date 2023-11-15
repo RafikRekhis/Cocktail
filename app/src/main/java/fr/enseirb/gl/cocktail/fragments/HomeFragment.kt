@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
         const val COCKTAIL_ID = "cocktail_id"
         const val COCKTAIL_NAME = "cocktail_name"
         const val COCKTAIL_IMAGE = "cocktail_image"
-        const val CATEGORY_NAME = "category_name"
+        const val FILTER_NAME = "category_name"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,7 +97,7 @@ class HomeFragment : Fragment() {
     private fun onCategoryClick() {
         categoriesAdapter.onCategoryClick = { category ->
             val intent = Intent(context, CategoryCocktailsActivity::class.java)
-            intent.putExtra(CATEGORY_NAME, category.strCategory)
+            intent.putExtra(FILTER_NAME, category.strCategory)
             startActivity(intent)
         }
     }
