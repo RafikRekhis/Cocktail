@@ -5,6 +5,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import fr.enseirb.gl.cocktail.models.Alcohol
+import fr.enseirb.gl.cocktail.models.AlcoholList
 import fr.enseirb.gl.cocktail.models.Category
 import fr.enseirb.gl.cocktail.models.CategoryList
 import fr.enseirb.gl.cocktail.models.CocktailList
@@ -26,6 +28,7 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
     private var searchedCocktailsLiveData = MutableLiveData<List<Drink>>()
     private var ingredientsLiveData = MutableLiveData<List<Ingredient>>()
     private var glassLiveData = MutableLiveData<List<Glass>>()
+    private var alcoholLiveData = MutableLiveData<List<Alcohol>>()
 
     private var favoritesLiveData = MutableLiveData<List<SavedCocktail>>()
     private var recentViewedCocktailsLiveData = MutableLiveData<List<RecentViewedCocktail>>()
@@ -172,5 +175,26 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
 
     fun observeGlass(): LiveData<List<Glass>> {
         return glassLiveData
+    }
+
+    fun getAlcohol() {
+        RetrofitInstance.api.getCocktailAlcohol().enqueue(object : Callback<AlcoholList> {
+            override fun onResponse(
+                call: Call<AlcoholList>,
+                response: Response<AlcoholList>
+            ) {
+                response.body()?.let { alcoholList ->
+                    alcoholLiveData.postValue(alcoholList.drinks)
+                }
+            }
+
+            override fun onFailure(call: Call<AlcoholList>, t: Throwable) {
+                Log.d("HomeFragment", "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun observeAlcohol(): LiveData<List<Alcohol>> {
+        return alcoholLiveData
     }
 }

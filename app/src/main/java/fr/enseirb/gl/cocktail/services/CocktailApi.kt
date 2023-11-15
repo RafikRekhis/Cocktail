@@ -1,5 +1,6 @@
 package fr.enseirb.gl.cocktail.services
 
+import fr.enseirb.gl.cocktail.models.AlcoholList
 import fr.enseirb.gl.cocktail.models.CategoryList
 import fr.enseirb.gl.cocktail.models.CocktailByFilterList
 import fr.enseirb.gl.cocktail.models.CocktailList
@@ -26,6 +27,9 @@ interface CocktailApi {
     @GET("list.php?g=list")
     fun getCocktailGlass(): Call<GlassList>
 
+    @GET("list.php?a=list")
+    fun getCocktailAlcohol(): Call<AlcoholList>
+
     @GET("filter.php")
     fun getCocktailsByCategory(@Query("c") categoryName: String): Call<CocktailByFilterList>
 
@@ -33,7 +37,10 @@ interface CocktailApi {
     fun getCocktailsByIngredient(@Query("i") ingredientName: String): Call<CocktailByFilterList>
 
     @GET("filter.php")
-    fun getCocktailsByGlass(@Query("g") ingredientName: String): Call<CocktailByFilterList>
+    fun getCocktailsByGlass(@Query("g") glassName: String): Call<CocktailByFilterList>
+
+    @GET("filter.php")
+    fun getCocktailsByAlcohol(@Query("a") alcoholName: String): Call<CocktailByFilterList>
 
     @GET("search.php")
     fun getCocktailsByName(@Query("s") cocktailName: String): Call<CocktailList>

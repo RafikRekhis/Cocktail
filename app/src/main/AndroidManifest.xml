@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activities.AlcoholCocktailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.GlassCocktailsActivity"
             android:exported="false" />
         <activity
