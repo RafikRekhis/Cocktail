@@ -6,8 +6,7 @@ import com.google.gson.reflect.TypeToken
 data class RecentViewedCocktail(
     val idDrink: String,
     val strDrinkThumb: String
-)
-{
+) {
     companion object {
         fun fromJsonList(json: String): MutableList<RecentViewedCocktail> {
             val listType = object : TypeToken<ArrayList<RecentViewedCocktail>>() {}.type

@@ -9,31 +9,31 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class IngredientCocktailsViewModel : ViewModel() {
-    private var ingredientCocktailsLiveData = MutableLiveData<List<CocktailByFilter>>()
+class GlassCocktailsViewModel : ViewModel() {
+    private var glassCocktailsLiveData = MutableLiveData<List<CocktailByFilter>>()
 
-    fun getIngredientCocktails(ingredientName: String) {
-        RetrofitInstance.api.getCocktailsByIngredient(ingredientName)
+    fun getGlassCocktails(glassName: String) {
+        RetrofitInstance.api.getCocktailsByGlass(glassName)
             .enqueue(object : Callback<CocktailByFilterList> {
                 override fun onResponse(
                     call: Call<CocktailByFilterList>,
                     response: Response<CocktailByFilterList>
                 ) {
                     response.body()?.let { cocktailList ->
-                        ingredientCocktailsLiveData.postValue(cocktailList.drinks)
+                        glassCocktailsLiveData.postValue(cocktailList.drinks)
                     }
                 }
 
                 override fun onFailure(call: Call<CocktailByFilterList>, t: Throwable) {
                     android.util.Log.d(
-                        "IngredientCocktailsFragment",
+                        "GlassCocktailsFragment",
                         "onFailure: ${t.message.toString()}"
                     )
                 }
             })
     }
 
-    fun observeIngredientCocktails(): MutableLiveData<List<CocktailByFilter>> {
-        return ingredientCocktailsLiveData
+    fun observeGlassCocktails(): MutableLiveData<List<CocktailByFilter>> {
+        return glassCocktailsLiveData
     }
 }

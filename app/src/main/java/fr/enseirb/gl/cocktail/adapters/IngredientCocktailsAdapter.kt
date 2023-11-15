@@ -8,21 +8,24 @@ import com.bumptech.glide.Glide
 import fr.enseirb.gl.cocktail.activities.CocktailDetailsActivity
 import fr.enseirb.gl.cocktail.databinding.CocktailItemBinding
 import fr.enseirb.gl.cocktail.fragments.HomeFragment
-import fr.enseirb.gl.cocktail.models.CocktailByCategory
+import fr.enseirb.gl.cocktail.models.CocktailByFilter
 
 class IngredientCocktailsAdapter :
     RecyclerView.Adapter<IngredientCocktailsAdapter.IngredientCocktailsViewHolder>() {
-    private var cocktails = ArrayList<CocktailByCategory>()
+    private var cocktails = ArrayList<CocktailByFilter>()
 
-    fun setCocktails(cocktails: List<CocktailByCategory>) {
-        this.cocktails = cocktails as ArrayList<CocktailByCategory>
+    fun setCocktails(cocktails: List<CocktailByFilter>) {
+        this.cocktails = cocktails as ArrayList<CocktailByFilter>
         notifyDataSetChanged()
     }
 
     inner class IngredientCocktailsViewHolder(binding: CocktailItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientCocktailsViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): IngredientCocktailsViewHolder {
         return IngredientCocktailsViewHolder(
             CocktailItemBinding.inflate(
                 LayoutInflater.from(parent.context)

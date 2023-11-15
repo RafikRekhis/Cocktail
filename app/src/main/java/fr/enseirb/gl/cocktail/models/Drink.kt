@@ -13,41 +13,60 @@ data class Drink(
     val strIBA: Any,
     val strImageAttribution: Any,
     val strImageSource: Any,
-    val strIngredient1: String,
-    val strIngredient10: Any,
-    val strIngredient11: Any,
-    val strIngredient12: Any,
-    val strIngredient13: Any,
-    val strIngredient14: Any,
-    val strIngredient15: Any,
-    val strIngredient2: String,
-    val strIngredient3: String,
-    val strIngredient4: String,
-    val strIngredient5: String,
-    val strIngredient6: String,
-    val strIngredient7: String,
-    val strIngredient8: String,
-    val strIngredient9: String,
-    val strInstructions: String,
-    val strInstructionsDE: String,
-    val strInstructionsES: String,
-    val strInstructionsFR: Any,
-    val strInstructionsIT: String,
-    val strMeasure1: String,
-    val strMeasure10: Any,
-    val strMeasure11: Any,
-    val strMeasure12: Any,
-    val strMeasure13: Any,
-    val strMeasure14: Any,
-    val strMeasure15: Any,
-    val strMeasure2: String,
-    val strMeasure3: String,
-    val strMeasure4: String,
-    val strMeasure5: String,
-    val strMeasure6: String,
-    val strMeasure7: String,
-    val strMeasure8: String,
-    val strMeasure9: String,
+    val strIngredient1: String?,
+    val strIngredient10: String?,
+    val strIngredient11: String?,
+    val strIngredient12: String?,
+    val strIngredient13: String?,
+    val strIngredient14: String?,
+    val strIngredient15: String?,
+    val strIngredient2: String?,
+    val strIngredient3: String?,
+    val strIngredient4: String?,
+    val strIngredient5: String?,
+    val strIngredient6: String?,
+    val strIngredient7: String?,
+    val strIngredient8: String?,
+    val strIngredient9: String?,
+    val strInstructions: String?,
+    val strInstructionsDE: String?,
+    val strInstructionsES: String?,
+    val strInstructionsFR: String?,
+    val strInstructionsIT: String?,
+    val strMeasure1: String?,
+    val strMeasure10: String?,
+    val strMeasure11: String?,
+    val strMeasure12: String?,
+    val strMeasure13: String?,
+    val strMeasure14: String?,
+    val strMeasure15: String?,
+    val strMeasure2: String?,
+    val strMeasure3: String?,
+    val strMeasure4: String?,
+    val strMeasure5: String?,
+    val strMeasure6: String?,
+    val strMeasure7: String?,
+    val strMeasure8: String?,
+    val strMeasure9: String?,
     val strTags: Any,
     val strVideo: Any
-)
+) {
+    fun getIngredientsWithMeasures(): String {
+        val ingredientMeasureList = mutableListOf<String>()
+
+        for (i in 1..15) {
+            val ingredient = javaClass.getDeclaredField("strIngredient$i").get(this) as? String
+            val measure = javaClass.getDeclaredField("strMeasure$i").get(this) as? String
+
+            if (!ingredient.isNullOrBlank()) {
+                if (!measure.isNullOrBlank()) {
+                    ingredientMeasureList.add("- $ingredient ( $measure )")
+                } else {
+                    ingredientMeasureList.add("- $ingredient")
+                }
+            }
+        }
+
+        return ingredientMeasureList.joinToString("\n")
+    }
+}

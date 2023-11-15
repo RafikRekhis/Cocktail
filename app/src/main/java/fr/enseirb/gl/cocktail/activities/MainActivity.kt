@@ -19,13 +19,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
-    val viewModel : HomeViewModel by lazy {
+    val viewModel: HomeViewModel by lazy {
         HomeViewModel(getSharedPreferences("sharedPref", MODE_PRIVATE))
     }
 
     val settingsViewModel : SettingsViewModel by lazy {
         SettingsViewModel(getSharedPreferences("sharedPref", MODE_PRIVATE))
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -21,8 +21,6 @@ class CategoriesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //viewModel = HomeViewModel()
-
         viewModel = (activity as MainActivity).viewModel
     }
 
@@ -46,7 +44,7 @@ class CategoriesFragment : Fragment() {
     private fun onCategoryClick() {
         categoriesAdapter.onCategoryClick = { category ->
             val intent = Intent(context, CategoryCocktailsActivity::class.java)
-            intent.putExtra(HomeFragment.CATEGORY_NAME, category.strCategory)
+            intent.putExtra(HomeFragment.FILTER_NAME, category.strCategory)
             startActivity(intent)
         }
     }

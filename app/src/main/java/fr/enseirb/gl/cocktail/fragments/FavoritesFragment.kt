@@ -1,13 +1,11 @@
 package fr.enseirb.gl.cocktail.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.activities.MainActivity
 import fr.enseirb.gl.cocktail.adapters.FavoritesCocktailsAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentFavoritesBinding
@@ -15,7 +13,6 @@ import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
 
 
 class FavoritesFragment : Fragment() {
-
     private lateinit var binding: FragmentFavoritesBinding
     private lateinit var viewModel: HomeViewModel
     private lateinit var favoritesCocktailsAdapter: FavoritesCocktailsAdapter
@@ -29,12 +26,12 @@ class FavoritesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         binding = FragmentFavoritesBinding.inflate(inflater)
         return binding.root
     }
-    override  fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getFavorites()
@@ -60,8 +57,5 @@ class FavoritesFragment : Fragment() {
         viewModel.observeFavorites().observe(requireActivity()) { cocktails ->
             favoritesCocktailsAdapter.differ.submitList(cocktails)
         }
-
     }
-
-
 }

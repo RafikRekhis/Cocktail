@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.CategoryCocktailsActivity">
+    tools:context=".activities.GlassCocktailsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar_category"
+        android:id="@+id/appbar_glass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_category"
+            android:id="@+id/toolbar_glass"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_30sdp"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
-        android:id="@+id/tv_category_count"
+        android:id="@+id/tv_glass_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_5sdp"
@@ -29,15 +29,15 @@
         android:textSize="@dimen/_15ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appbar_category" />
+        app:layout_constraintTop_toBottomOf="@id/appbar_glass" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_category_cocktails"
+        android:id="@+id/rv_glass_cocktails"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_category_count" />
+        app:layout_constraintTop_toBottomOf="@id/tv_glass_count" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
