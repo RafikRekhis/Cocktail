@@ -30,35 +30,147 @@
         android:id="@+id/favoritesFragment"
         android:name="fr.enseirb.gl.cocktail.fragments.FavoritesFragment"
         android:label="Favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites">
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ingredientsFragment"
+            app:destination="@id/ingredientsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_glassFragment"
+            app:destination="@id/glassFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_alcoholFragment"
+            app:destination="@id/alcoholFragment" />
+    </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="fr.enseirb.gl.cocktail.fragments.CategoriesFragment"
         android:label="Categories"
-        tools:layout="@layout/fragment_categories" />
+        tools:layout="@layout/fragment_categories">
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ingredientsFragment"
+            app:destination="@id/ingredientsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_glassFragment"
+            app:destination="@id/glassFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_alcoholFragment"
+            app:destination="@id/alcoholFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="fr.enseirb.gl.cocktail.fragments.SearchFragment"
         android:label="Search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ingredientsFragment"
+            app:destination="@id/ingredientsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_glassFragment"
+            app:destination="@id/glassFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_alcoholFragment"
+            app:destination="@id/alcoholFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="fr.enseirb.gl.cocktail.fragments.SettingsFragment"
         android:label="Settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ingredientsFragment"
+            app:destination="@id/ingredientsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_glassFragment"
+            app:destination="@id/glassFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_alcoholFragment"
+            app:destination="@id/alcoholFragment" />
+    </fragment>
     <fragment
         android:id="@+id/ingredientsFragment"
         android:name="fr.enseirb.gl.cocktail.fragments.IngredientsFragment"
         android:label="Ingredients"
-        tools:layout="@layout/fragment_ingredients" />
+        tools:layout="@layout/fragment_ingredients">
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ingredientsFragment"
+            app:destination="@id/ingredientsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_glassFragment"
+            app:destination="@id/glassFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_alcoholFragment"
+            app:destination="@id/alcoholFragment" />
+    </fragment>
     <fragment
         android:id="@+id/glassFragment"
         android:name="fr.enseirb.gl.cocktail.fragments.GlassFragment"
         android:label="Glasses"
-        tools:layout="@layout/fragment_glass" />
+        tools:layout="@layout/fragment_glass">
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ingredientsFragment"
+            app:destination="@id/ingredientsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_glassFragment"
+            app:destination="@id/glassFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_alcoholFragment"
+            app:destination="@id/alcoholFragment" />
+    </fragment>
     <fragment
         android:id="@+id/alcoholFragment"
         android:name="fr.enseirb.gl.cocktail.fragments.AlcoholFragment"
         android:label="Cocktail types"
-        tools:layout="@layout/fragment_alcohol" />
+        tools:layout="@layout/fragment_alcohol">
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ingredientsFragment"
+            app:destination="@id/ingredientsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_glassFragment"
+            app:destination="@id/glassFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_alcoholFragment"
+            app:destination="@id/alcoholFragment" />
+    </fragment>
 </navigation>
