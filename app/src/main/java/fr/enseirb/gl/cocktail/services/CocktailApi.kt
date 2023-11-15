@@ -14,7 +14,7 @@ interface CocktailApi {
     fun getRandomCocktail(): Call<CocktailList>
 
     @GET("lookup.php")
-    fun getCocktailDetails(@Query("i") id:String): Call<CocktailList>
+    fun getCocktailDetails(@Query("i") id: String): Call<CocktailList>
 
     @GET("list.php?c=list")
     fun getCocktailCategories(): Call<CategoryList>

@@ -10,7 +10,8 @@ import fr.enseirb.gl.cocktail.databinding.RecentCocktailsViewedBinding
 import fr.enseirb.gl.cocktail.fragments.HomeFragment
 import fr.enseirb.gl.cocktail.models.RecentViewedCocktail
 
-class RecentViewedCocktailAdapter(): RecyclerView.Adapter<RecentViewedCocktailAdapter.RecentViewedCocktailViewHolder>() {
+class RecentViewedCocktailAdapter() :
+    RecyclerView.Adapter<RecentViewedCocktailAdapter.RecentViewedCocktailViewHolder>() {
     class RecentViewedCocktailViewHolder(val binding: RecentCocktailsViewedBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -21,6 +22,7 @@ class RecentViewedCocktailAdapter(): RecyclerView.Adapter<RecentViewedCocktailAd
         this.recentViewedCocktails.addAll(recentViewedCocktails)
         notifyDataSetChanged()
     }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -35,7 +37,7 @@ class RecentViewedCocktailAdapter(): RecyclerView.Adapter<RecentViewedCocktailAd
     }
 
     override fun getItemCount(): Int {
-        return  recentViewedCocktails.size
+        return recentViewedCocktails.size
     }
 
     override fun onBindViewHolder(holder: RecentViewedCocktailViewHolder, position: Int) {

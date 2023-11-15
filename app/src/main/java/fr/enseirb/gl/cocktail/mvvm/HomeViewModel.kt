@@ -2,7 +2,6 @@ package fr.enseirb.gl.cocktail.mvvm
 
 import android.content.SharedPreferences
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -39,6 +38,7 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
         }
         favoritesLiveData.postValue(favoritesList)
     }
+
     fun observeFavorites(): LiveData<List<SavedCocktail>> {
 
         return favoritesLiveData
@@ -47,18 +47,18 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
     fun getRecentViewedCocktails() {
         //obtenir la liste des cocktails récemment vus depuis SharedPreferences
         val recentViewedCocktailsJson = sharedPreferences.getString("recentViewedCocktails", null)
-        val recentViewedCocktailsList: MutableList<RecentViewedCocktail> = if (recentViewedCocktailsJson != null) {
-            RecentViewedCocktail.fromJsonList(recentViewedCocktailsJson)
-        } else {
-            mutableListOf()
-        }
+        val recentViewedCocktailsList: MutableList<RecentViewedCocktail> =
+            if (recentViewedCocktailsJson != null) {
+                RecentViewedCocktail.fromJsonList(recentViewedCocktailsJson)
+            } else {
+                mutableListOf()
+            }
         recentViewedCocktailsLiveData.postValue(recentViewedCocktailsList)
     }
 
     fun observeRecentViewedCocktails(): LiveData<List<RecentViewedCocktail>> {
         return recentViewedCocktailsLiveData
     }
-
 
 
     fun getRandomCocktail() {
@@ -91,7 +91,7 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
                 call: Call<CategoryList>,
                 response: Response<CategoryList>
             ) {
-                response.body()?.let {categoryList ->
+                response.body()?.let { categoryList ->
                     categoriesLiveData.postValue(categoryList.drinks)
                 }
             }
@@ -107,26 +107,26 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
     }
 
     fun searchCocktailsByName(cocktailName: String) {
-        RetrofitInstance.api.getCocktailsByName(cocktailName).enqueue(object : Callback<CocktailList> {
-            override fun onResponse(
-                call: Call<CocktailList>,
-                response: Response<CocktailList>
-            ) {
-                response.body()?.let {cocktailList ->
-                    searchedCocktailsLiveData.postValue(cocktailList.drinks)
+        RetrofitInstance.api.getCocktailsByName(cocktailName)
+            .enqueue(object : Callback<CocktailList> {
+                override fun onResponse(
+                    call: Call<CocktailList>,
+                    response: Response<CocktailList>
+                ) {
+                    response.body()?.let { cocktailList ->
+                        searchedCocktailsLiveData.postValue(cocktailList.drinks)
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<CocktailList>, t: Throwable) {
-                Log.d("HomeFragment", "onFailure: ${t.message.toString()}")
-            }
-        })
+                override fun onFailure(call: Call<CocktailList>, t: Throwable) {
+                    Log.d("HomeFragment", "onFailure: ${t.message.toString()}")
+                }
+            })
     }
 
     fun observeSearchedCocktails(): LiveData<List<Drink>> {
         return searchedCocktailsLiveData
     }
-
 
 
     fun getIngredients() {
@@ -135,7 +135,7 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
                 call: Call<IngredientList>,
                 response: Response<IngredientList>
             ) {
-                response.body()?.let {ingredientList ->
+                response.body()?.let { ingredientList ->
                     ingredientsLiveData.postValue(ingredientList.drinks)
                 }
             }
@@ -149,5 +149,4 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
     fun observeIngredients(): LiveData<List<Ingredient>> {
         return ingredientsLiveData
     }
-
 }

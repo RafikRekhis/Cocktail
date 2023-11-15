@@ -22,7 +22,10 @@ class IngredientCocktailsAdapter :
     inner class IngredientCocktailsViewHolder(binding: CocktailItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientCocktailsViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): IngredientCocktailsViewHolder {
         return IngredientCocktailsViewHolder(
             CocktailItemBinding.inflate(
                 LayoutInflater.from(parent.context)

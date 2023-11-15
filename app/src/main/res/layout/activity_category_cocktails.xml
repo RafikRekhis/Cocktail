@@ -7,24 +7,24 @@
     tools:context=".activities.CategoryCocktailsActivity">
 
     <TextView
+        android:id="@+id/tv_category_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_category_count"
+        android:layout_marginTop="@dimen/_5sdp"
         android:fontFamily="@font/main_font"
-        android:textSize="@dimen/_15ssp"
         android:textColor="@color/accent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="@dimen/_15ssp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/_5sdp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_category_cocktails"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/rv_category_cocktails"
-        app:layout_constraintTop_toBottomOf="@id/tv_category_count"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tv_category_count" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

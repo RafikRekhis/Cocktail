@@ -18,7 +18,7 @@ import retrofit2.Response
 class CocktailDetailsViewModel(private val sharedPreferences: SharedPreferences) : ViewModel() {
     private var cocktailDetailsLiveData = MutableLiveData<Drink>()
 
-    fun getCocktailDetails(id:String) {
+    fun getCocktailDetails(id: String) {
         RetrofitInstance.api.getCocktailDetails(id).enqueue(object : Callback<CocktailList> {
             override fun onResponse(
                 call: Call<CocktailList>,
@@ -70,7 +70,7 @@ class CocktailDetailsViewModel(private val sharedPreferences: SharedPreferences)
         sharedPreferences.edit().putString("favorites", newFavoritesJson).apply()
     }
 
-    fun removeFavorite(savedCocktail: SavedCocktail){
+    fun removeFavorite(savedCocktail: SavedCocktail) {
         val favoritesJson = sharedPreferences.getString("favorites", null)
         val favoritesList: MutableList<SavedCocktail> = if (favoritesJson != null) {
             SavedCocktail.fromJsonList(favoritesJson)
@@ -82,14 +82,14 @@ class CocktailDetailsViewModel(private val sharedPreferences: SharedPreferences)
         sharedPreferences.edit().putString("favorites", newFavoritesJson).apply()
     }
 
-    fun isFavorite(savedCocktail: SavedCocktail) : Boolean{
+    fun isFavorite(savedCocktail: SavedCocktail): Boolean {
         val favoritesJson = sharedPreferences.getString("favorites", null)
         val favoritesList: MutableList<SavedCocktail> = if (favoritesJson != null) {
             SavedCocktail.fromJsonList(favoritesJson)
         } else {
             mutableListOf()
         }
-        favoritesList.forEach{ cocktail ->
+        favoritesList.forEach { cocktail ->
             if (cocktail.idDrink == savedCocktail.idDrink) {
                 return true
             }
@@ -98,18 +98,19 @@ class CocktailDetailsViewModel(private val sharedPreferences: SharedPreferences)
     }
 
     fun addRecentViewedCocktail(recentViewedCocktail: RecentViewedCocktail) {
-        Log.d("ooooooooooo", "aaaa:${recentViewedCocktail.idDrink}")
         // Récupérer la liste actuelle des cocktails récemment vus depuis SharedPreferences
         val recentViewedCocktailsJson = sharedPreferences.getString("recentViewedCocktails", null)
         val maxViewedCocktailsNumber = sharedPreferences.getInt("maxRecentItems", 5)
-        val recentViewedCocktailsList: MutableList<RecentViewedCocktail> = if (recentViewedCocktailsJson != null) {
-            RecentViewedCocktail.fromJsonList(recentViewedCocktailsJson)
-        } else {
-            mutableListOf()
-        }
+        val recentViewedCocktailsList: MutableList<RecentViewedCocktail> =
+            if (recentViewedCocktailsJson != null) {
+                RecentViewedCocktail.fromJsonList(recentViewedCocktailsJson)
+            } else {
+                mutableListOf()
+            }
 
         // Vérifier si le cocktail existe déjà dans la liste
-        val existingCocktail = recentViewedCocktailsList.find { it.idDrink == recentViewedCocktail.idDrink }
+        val existingCocktail =
+            recentViewedCocktailsList.find { it.idDrink == recentViewedCocktail.idDrink }
 
         // Si le cocktail existe, le supprimer de la liste
         if (existingCocktail != null) {
@@ -125,11 +126,11 @@ class CocktailDetailsViewModel(private val sharedPreferences: SharedPreferences)
         }
 
         // Convertir la liste en format JSON
-        val newRecentViewedCocktailsJson = RecentViewedCocktail.toJsonList(recentViewedCocktailsList)
+        val newRecentViewedCocktailsJson =
+            RecentViewedCocktail.toJsonList(recentViewedCocktailsList)
 
         // Enregistrer la nouvelle liste dans SharedPreferences
-        sharedPreferences.edit().putString("recentViewedCocktails", newRecentViewedCocktailsJson).apply()
+        sharedPreferences.edit().putString("recentViewedCocktails", newRecentViewedCocktailsJson)
+            .apply()
     }
-
-
 }

@@ -2,17 +2,13 @@ package fr.enseirb.gl.cocktail.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.activities.CategoryCocktailsActivity
 import fr.enseirb.gl.cocktail.activities.CocktailDetailsActivity
 import fr.enseirb.gl.cocktail.activities.MainActivity
@@ -22,7 +18,6 @@ import fr.enseirb.gl.cocktail.databinding.FragmentHomeBinding
 import fr.enseirb.gl.cocktail.models.Drink
 import fr.enseirb.gl.cocktail.models.RecentViewedCocktail
 import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
-
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -40,7 +35,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //homeViewModel = HomeViewModel( )
+
         homeViewModel = (activity as MainActivity).viewModel
         recentViewedCocktailAdapter = RecentViewedCocktailAdapter()
     }
@@ -68,8 +63,6 @@ class HomeFragment : Fragment() {
 
         homeViewModel.getRecentViewedCocktails()
         observeRecentViewedCocktails()
-
-//        onSearchIconClick()
     }
 
     override fun onResume() {
@@ -84,9 +77,9 @@ class HomeFragment : Fragment() {
         }
     }
 
-
     private fun observeRecentViewedCocktails() {
-        homeViewModel.observeRecentViewedCocktails().observe(viewLifecycleOwner
+        homeViewModel.observeRecentViewedCocktails().observe(
+            viewLifecycleOwner
         ) { recentCocktailList ->
             if (recentCocktailList.isEmpty()) {
                 // If the recentCocktailList is empty, hide the part where recent viewed cocktails are displayed
@@ -100,12 +93,6 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
-//    private fun onSearchIconClick() {
-//        binding.iconSearch.setOnClickListener {
-//            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
-//        }
-//    }
 
     private fun onCategoryClick() {
         categoriesAdapter.onCategoryClick = { category ->

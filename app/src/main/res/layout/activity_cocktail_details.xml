@@ -19,8 +19,8 @@
             android:fitsSystemWindows="true"
             android:theme="@style/CustomToolbarTheme"
             app:collapsedTitleTextColor="@color/white"
-            app:expandedTitleTextColor="@color/white"
             app:contentScrim="@color/accent"
+            app:expandedTitleTextColor="@color/white"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
             app:title="Cocktail name">
 
@@ -45,12 +45,12 @@
         android:id="@+id/fab_add_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_10sdp"
         android:src="@drawable/favorites"
         app:backgroundTint="@color/accent"
         app:layout_anchor="@id/appBar"
         app:layout_anchorGravity="bottom|end"
-        app:tint = "@color/white"
-        android:layout_marginEnd="@dimen/_10sdp" />
+        app:tint="@color/white" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -101,11 +101,11 @@
                 android:id="@+id/tv_instructions"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="- Instructions : "
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/main_font"
                 android:includeFontPadding="false"
+                android:text="- Instructions : "
                 android:textColor="@color/g_black"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -132,8 +132,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:indeterminate="true"
+        android:visibility="gone"
         app:layout_anchor="@id/appBar"
-        app:layout_anchorGravity="bottom|end"
-        android:visibility="gone"/>
+        app:layout_anchorGravity="bottom|end" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

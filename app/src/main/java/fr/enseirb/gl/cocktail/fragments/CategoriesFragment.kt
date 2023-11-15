@@ -21,8 +21,6 @@ class CategoriesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //viewModel = HomeViewModel()
-
         viewModel = (activity as MainActivity).viewModel
     }
 
