@@ -68,6 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_20sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -98,6 +99,46 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_alcohol_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:drawableLeft="@drawable/alcohol"
+                android:drawablePadding="5dp"
+                android:text="Cocktail type : "
+                android:textColor="@color/g_black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cocktail_info"/>
+
+            <TextView
+                android:id="@+id/tv_ingredients"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/main_font"
+                android:includeFontPadding="false"
+                android:text="- Ingredients : "
+                android:textColor="@color/g_black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_alcohol_info" />
+
+            <TextView
+                android:id="@+id/tv_ingredients_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_ingredients" />
+
+            <TextView
                 android:id="@+id/tv_instructions"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -111,7 +152,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cocktail_info" />
+                app:layout_constraintTop_toBottomOf="@id/tv_ingredients_content" />
 
             <TextView
                 android:id="@+id/tv_content"

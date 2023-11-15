@@ -100,6 +100,8 @@ class CocktailDetailsActivity : AppCompatActivity() {
             binding.collapsingToolbar.title = cocktailDetails.strDrink
             binding.tvCategoryInfo.text = cocktailDetails.strCategory
             binding.tvGlassInfo.text = cocktailDetails.strGlass
+            binding.tvAlcoholInfo.text = "${binding.tvAlcoholInfo.text}${cocktailDetails.strAlcoholic}"
+            binding.tvIngredientsContent.text = cocktailDetails.getIngredientsWithMeasures()
             binding.tvContent.text = cocktailDetails.strInstructions
             onResponse()
         }
