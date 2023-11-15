@@ -98,7 +98,6 @@ class CocktailDetailsViewModel(private val sharedPreferences: SharedPreferences)
     }
 
     fun addRecentViewedCocktail(recentViewedCocktail: RecentViewedCocktail) {
-        Log.d("ooooooooooo", "aaaa:${recentViewedCocktail.idDrink}")
         // Récupérer la liste actuelle des cocktails récemment vus depuis SharedPreferences
         val recentViewedCocktailsJson = sharedPreferences.getString("recentViewedCocktails", null)
         val maxViewedCocktailsNumber = sharedPreferences.getInt("maxRecentItems", 5)

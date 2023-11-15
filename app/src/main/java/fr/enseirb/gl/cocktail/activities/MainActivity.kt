@@ -13,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.databinding.ActivityMainBinding
 import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
+import fr.enseirb.gl.cocktail.mvvm.SettingsViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -20,6 +21,10 @@ class MainActivity : AppCompatActivity() {
 
     val viewModel : HomeViewModel by lazy {
         HomeViewModel(getSharedPreferences("sharedPref", MODE_PRIVATE))
+    }
+
+    val settingsViewModel : SettingsViewModel by lazy {
+        SettingsViewModel(getSharedPreferences("sharedPref", MODE_PRIVATE))
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
