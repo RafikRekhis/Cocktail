@@ -1,7 +1,7 @@
 package fr.enseirb.gl.cocktail.services
 
 import fr.enseirb.gl.cocktail.models.CategoryList
-import fr.enseirb.gl.cocktail.models.CocktailByCategoryList
+import fr.enseirb.gl.cocktail.models.CocktailByFilterList
 import fr.enseirb.gl.cocktail.models.CocktailList
 import fr.enseirb.gl.cocktail.models.IngredientList
 import retrofit2.Call
@@ -23,10 +23,10 @@ interface CocktailApi {
     fun getCocktailIngredients(): Call<IngredientList>
 
     @GET("filter.php")
-    fun getCocktailsByCategory(@Query("c") categoryName: String): Call<CocktailByCategoryList>
+    fun getCocktailsByCategory(@Query("c") categoryName: String): Call<CocktailByFilterList>
 
     @GET("filter.php")
-    fun getCocktailsByIngredient(@Query("i") ingredientName: String): Call<CocktailByCategoryList>
+    fun getCocktailsByIngredient(@Query("i") ingredientName: String): Call<CocktailByFilterList>
 
     @GET("search.php")
     fun getCocktailsByName(@Query("s") cocktailName: String): Call<CocktailList>

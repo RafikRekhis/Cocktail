@@ -10,8 +10,8 @@ import fr.enseirb.gl.cocktail.mvvm.IngredientCocktailsViewModel
 
 class IngredientCocktailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityIngredientCocktailsBinding
-    private lateinit var categoryCocktailsViewModel: IngredientCocktailsViewModel
-    private lateinit var categoryCocktailsAdapter: IngredientCocktailsAdapter
+    private lateinit var ingredientCocktailsViewModel: IngredientCocktailsViewModel
+    private lateinit var ingredientCocktailsAdapter: IngredientCocktailsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,20 +20,20 @@ class IngredientCocktailsActivity : AppCompatActivity() {
 
         prepareRecyclerView()
 
-        categoryCocktailsViewModel = IngredientCocktailsViewModel()
+        ingredientCocktailsViewModel = IngredientCocktailsViewModel()
 
-        categoryCocktailsViewModel.getIngredientCocktails(intent.getStringExtra(HomeFragment.CATEGORY_NAME)!!)
-        categoryCocktailsViewModel.observeIngredientCocktails().observe(this) { categoryCocktails ->
-            binding.tvIngredientCount.text = "${categoryCocktails.size} cocktails"
-            categoryCocktailsAdapter.setCocktails(categoryCocktails)
+        ingredientCocktailsViewModel.getIngredientCocktails(intent.getStringExtra(HomeFragment.CATEGORY_NAME)!!)
+        ingredientCocktailsViewModel.observeIngredientCocktails().observe(this) { ingredientCocktails ->
+            binding.tvIngredientCount.text = "${ingredientCocktails.size} cocktails"
+            ingredientCocktailsAdapter.setCocktails(ingredientCocktails)
         }
     }
 
     private fun prepareRecyclerView() {
-        categoryCocktailsAdapter = IngredientCocktailsAdapter()
+        ingredientCocktailsAdapter = IngredientCocktailsAdapter()
         binding.rvIngredientCocktails.apply {
             layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
-            adapter = categoryCocktailsAdapter
+            adapter = ingredientCocktailsAdapter
         }
     }
 }
