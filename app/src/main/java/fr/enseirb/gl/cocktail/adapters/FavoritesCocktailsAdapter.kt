@@ -12,8 +12,10 @@ import fr.enseirb.gl.cocktail.databinding.CocktailItemBinding
 import fr.enseirb.gl.cocktail.fragments.HomeFragment
 import fr.enseirb.gl.cocktail.models.SavedCocktail
 
-class FavoritesCocktailsAdapter : RecyclerView.Adapter<FavoritesCocktailsAdapter.FavoritesCocktailsViewHolder>() {
-    inner  class FavoritesCocktailsViewHolder(val binding:CocktailItemBinding) : RecyclerView.ViewHolder(binding.root)
+class FavoritesCocktailsAdapter :
+    RecyclerView.Adapter<FavoritesCocktailsAdapter.FavoritesCocktailsViewHolder>() {
+    inner class FavoritesCocktailsViewHolder(val binding: CocktailItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     private val diffUtil = object : DiffUtil.ItemCallback<SavedCocktail>() {
         override fun areItemsTheSame(oldItem: SavedCocktail, newItem: SavedCocktail): Boolean {
@@ -25,12 +27,18 @@ class FavoritesCocktailsAdapter : RecyclerView.Adapter<FavoritesCocktailsAdapter
         }
     }
 
-    val differ= AsyncListDiffer(this,diffUtil)
+    val differ = AsyncListDiffer(this, diffUtil)
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): FavoritesCocktailsViewHolder {
-        return FavoritesCocktailsViewHolder(CocktailItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return FavoritesCocktailsViewHolder(
+            CocktailItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int {
@@ -52,6 +60,4 @@ class FavoritesCocktailsAdapter : RecyclerView.Adapter<FavoritesCocktailsAdapter
             holder.itemView.context.startActivity(intent)
         }
     }
-
-
 }

@@ -44,7 +44,7 @@ class IngredientsFragment : Fragment() {
     private fun onIngredientClick() {
         ingredientsAdapter.onIngredientClick = { ingredient ->
             val intent = Intent(context, IngredientCocktailsActivity::class.java)
-            intent.putExtra(HomeFragment.CATEGORY_NAME, ingredient.strIngredient1)
+            intent.putExtra(HomeFragment.FILTER_NAME, ingredient.strIngredient1)
             startActivity(intent)
         }
     }

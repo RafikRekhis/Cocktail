@@ -10,8 +10,8 @@ import fr.enseirb.gl.cocktail.databinding.CocktailItemBinding
 import fr.enseirb.gl.cocktail.fragments.HomeFragment
 import fr.enseirb.gl.cocktail.models.CocktailByFilter
 
-class CategoryCocktailsAdapter :
-    RecyclerView.Adapter<CategoryCocktailsAdapter.CategoryCocktailsViewHolder>() {
+class GlassCocktailsAdapter :
+    RecyclerView.Adapter<GlassCocktailsAdapter.GlassCocktailsViewHolder>() {
     private var cocktails = ArrayList<CocktailByFilter>()
 
     fun setCocktails(cocktails: List<CocktailByFilter>) {
@@ -19,11 +19,14 @@ class CategoryCocktailsAdapter :
         notifyDataSetChanged()
     }
 
-    inner class CategoryCocktailsViewHolder(binding: CocktailItemBinding) :
+    inner class GlassCocktailsViewHolder(binding: CocktailItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryCocktailsViewHolder {
-        return CategoryCocktailsViewHolder(
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): GlassCocktailsViewHolder {
+        return GlassCocktailsViewHolder(
             CocktailItemBinding.inflate(
                 LayoutInflater.from(parent.context)
             )
@@ -34,7 +37,7 @@ class CategoryCocktailsAdapter :
         return cocktails.size
     }
 
-    override fun onBindViewHolder(holder: CategoryCocktailsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GlassCocktailsViewHolder, position: Int) {
         val cocktail = cocktails[position]
         holder.itemView.apply {
             val binding = CocktailItemBinding.bind(this)

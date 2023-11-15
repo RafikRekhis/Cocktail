@@ -3,7 +3,7 @@ package fr.enseirb.gl.cocktail.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import fr.enseirb.gl.cocktail.databinding.CategoryItemBinding
+import fr.enseirb.gl.cocktail.databinding.FilterItemBinding
 import fr.enseirb.gl.cocktail.models.Ingredient
 
 class IngredientsAdapter() : RecyclerView.Adapter<IngredientsAdapter.IngredientViewHolder>() {
@@ -15,12 +15,12 @@ class IngredientsAdapter() : RecyclerView.Adapter<IngredientsAdapter.IngredientV
         notifyDataSetChanged()
     }
 
-    inner class IngredientViewHolder(binding: CategoryItemBinding) :
+    inner class IngredientViewHolder(binding: FilterItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientViewHolder {
         return IngredientViewHolder(
-            CategoryItemBinding.inflate(
+            FilterItemBinding.inflate(
                 LayoutInflater.from(parent.context)
             )
         )
@@ -33,8 +33,8 @@ class IngredientsAdapter() : RecyclerView.Adapter<IngredientsAdapter.IngredientV
     override fun onBindViewHolder(holder: IngredientViewHolder, position: Int) {
         val ingredient = ingredients[position]
         holder.itemView.apply {
-            val binding = CategoryItemBinding.bind(this)
-            binding.categoryName.text = ingredient.strIngredient1
+            val binding = FilterItemBinding.bind(this)
+            binding.filterName.text = ingredient.strIngredient1
         }
 
         holder.itemView.setOnClickListener {

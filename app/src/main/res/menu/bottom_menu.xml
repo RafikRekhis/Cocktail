@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Home"
+    <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/home"/>
-    <item android:title="Favorites"
+        android:icon="@drawable/home"
+        android:title="Home" />
+    <item
         android:id="@+id/favoritesFragment"
-        android:icon="@drawable/favorites"/>
-    <item android:title="Categories"
+        android:icon="@drawable/favorites"
+        android:title="Favorites" />
+    <item
         android:id="@+id/categoriesFragment"
-        android:icon="@drawable/categories"/>
+        android:icon="@drawable/categories"
+        android:title="Categories" />
 </menu>

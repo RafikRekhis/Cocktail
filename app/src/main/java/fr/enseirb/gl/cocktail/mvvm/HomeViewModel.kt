@@ -2,7 +2,6 @@ package fr.enseirb.gl.cocktail.mvvm
 
 import android.content.SharedPreferences
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +9,8 @@ import fr.enseirb.gl.cocktail.models.Category
 import fr.enseirb.gl.cocktail.models.CategoryList
 import fr.enseirb.gl.cocktail.models.CocktailList
 import fr.enseirb.gl.cocktail.models.Drink
+import fr.enseirb.gl.cocktail.models.Glass
+import fr.enseirb.gl.cocktail.models.GlassList
 import fr.enseirb.gl.cocktail.models.SavedCocktail
 import fr.enseirb.gl.cocktail.models.Ingredient
 import fr.enseirb.gl.cocktail.models.IngredientList
@@ -24,6 +25,7 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
     private var categoriesLiveData = MutableLiveData<List<Category>>()
     private var searchedCocktailsLiveData = MutableLiveData<List<Drink>>()
     private var ingredientsLiveData = MutableLiveData<List<Ingredient>>()
+    private var glassLiveData = MutableLiveData<List<Glass>>()
 
     private var favoritesLiveData = MutableLiveData<List<SavedCocktail>>()
     private var recentViewedCocktailsLiveData = MutableLiveData<List<RecentViewedCocktail>>()
@@ -39,6 +41,7 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
         }
         favoritesLiveData.postValue(favoritesList)
     }
+
     fun observeFavorites(): LiveData<List<SavedCocktail>> {
 
         return favoritesLiveData
@@ -47,18 +50,18 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
     fun getRecentViewedCocktails() {
         //obtenir la liste des cocktails récemment vus depuis SharedPreferences
         val recentViewedCocktailsJson = sharedPreferences.getString("recentViewedCocktails", null)
-        val recentViewedCocktailsList: MutableList<RecentViewedCocktail> = if (recentViewedCocktailsJson != null) {
-            RecentViewedCocktail.fromJsonList(recentViewedCocktailsJson)
-        } else {
-            mutableListOf()
-        }
+        val recentViewedCocktailsList: MutableList<RecentViewedCocktail> =
+            if (recentViewedCocktailsJson != null) {
+                RecentViewedCocktail.fromJsonList(recentViewedCocktailsJson)
+            } else {
+                mutableListOf()
+            }
         recentViewedCocktailsLiveData.postValue(recentViewedCocktailsList)
     }
 
     fun observeRecentViewedCocktails(): LiveData<List<RecentViewedCocktail>> {
         return recentViewedCocktailsLiveData
     }
-
 
 
     fun getRandomCocktail() {
@@ -91,7 +94,7 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
                 call: Call<CategoryList>,
                 response: Response<CategoryList>
             ) {
-                response.body()?.let {categoryList ->
+                response.body()?.let { categoryList ->
                     categoriesLiveData.postValue(categoryList.drinks)
                 }
             }
@@ -107,26 +110,26 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
     }
 
     fun searchCocktailsByName(cocktailName: String) {
-        RetrofitInstance.api.getCocktailsByName(cocktailName).enqueue(object : Callback<CocktailList> {
-            override fun onResponse(
-                call: Call<CocktailList>,
-                response: Response<CocktailList>
-            ) {
-                response.body()?.let {cocktailList ->
-                    searchedCocktailsLiveData.postValue(cocktailList.drinks)
+        RetrofitInstance.api.getCocktailsByName(cocktailName)
+            .enqueue(object : Callback<CocktailList> {
+                override fun onResponse(
+                    call: Call<CocktailList>,
+                    response: Response<CocktailList>
+                ) {
+                    response.body()?.let { cocktailList ->
+                        searchedCocktailsLiveData.postValue(cocktailList.drinks)
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<CocktailList>, t: Throwable) {
-                Log.d("HomeFragment", "onFailure: ${t.message.toString()}")
-            }
-        })
+                override fun onFailure(call: Call<CocktailList>, t: Throwable) {
+                    Log.d("HomeFragment", "onFailure: ${t.message.toString()}")
+                }
+            })
     }
 
     fun observeSearchedCocktails(): LiveData<List<Drink>> {
         return searchedCocktailsLiveData
     }
-
 
 
     fun getIngredients() {
@@ -135,7 +138,7 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
                 call: Call<IngredientList>,
                 response: Response<IngredientList>
             ) {
-                response.body()?.let {ingredientList ->
+                response.body()?.let { ingredientList ->
                     ingredientsLiveData.postValue(ingredientList.drinks)
                 }
             }
@@ -150,4 +153,24 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
         return ingredientsLiveData
     }
 
+    fun getGlass() {
+        RetrofitInstance.api.getCocktailGlass().enqueue(object : Callback<GlassList> {
+            override fun onResponse(
+                call: Call<GlassList>,
+                response: Response<GlassList>
+            ) {
+                response.body()?.let { glassList ->
+                    glassLiveData.postValue(glassList.drinks)
+                }
+            }
+
+            override fun onFailure(call: Call<GlassList>, t: Throwable) {
+                Log.d("HomeFragment", "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun observeGlass(): LiveData<List<Glass>> {
+        return glassLiveData
+    }
 }
