@@ -11,8 +11,7 @@ class SettingsViewModel(private val sharedPreferences: SharedPreferences) : View
     }
 
     public fun handleSaveClicked(nbMaxRecentCocktails: Int): Boolean {
-        if(nbMaxRecentCocktails < 1 || nbMaxRecentCocktails > 99) {
-            Toast.makeText(null, "Veuillez entrer un nombre entre 1 et 10", Toast.LENGTH_SHORT).show()
+        if(nbMaxRecentCocktails < 0) {
             return false
         }
         sharedPreferences.edit().putInt("maxRecentItems", nbMaxRecentCocktails).apply()
