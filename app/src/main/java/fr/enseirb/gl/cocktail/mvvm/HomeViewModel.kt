@@ -51,6 +51,8 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
     }
 
     fun getRecentViewedCocktails() {
+
+        val maxRecentCocktail:Int = sharedPreferences.getInt("maxRecentItems", 5)
         //obtenir la liste des cocktails récemment vus depuis SharedPreferences
         val recentViewedCocktailsJson = sharedPreferences.getString("recentViewedCocktails", null)
         val recentViewedCocktailsList: MutableList<RecentViewedCocktail> =
@@ -59,7 +61,7 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
             } else {
                 mutableListOf()
             }
-        recentViewedCocktailsLiveData.postValue(recentViewedCocktailsList)
+        recentViewedCocktailsLiveData.postValue(recentViewedCocktailsList.take(maxRecentCocktail))
     }
 
     fun observeRecentViewedCocktails(): LiveData<List<RecentViewedCocktail>> {

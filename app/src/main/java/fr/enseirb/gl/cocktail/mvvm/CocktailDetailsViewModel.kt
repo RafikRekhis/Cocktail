@@ -121,7 +121,7 @@ class CocktailDetailsViewModel(private val sharedPreferences: SharedPreferences)
         recentViewedCocktailsList.add(0, recentViewedCocktail)
 
         // Si la liste contient plus de MAX_RECENT_ITEMS éléments, supprimer le dernier élément
-        if (recentViewedCocktailsList.size > maxViewedCocktailsNumber) {
+        if (recentViewedCocktailsList.size > 99) {
             recentViewedCocktailsList.removeAt(recentViewedCocktailsList.size - 1)
         }
 
