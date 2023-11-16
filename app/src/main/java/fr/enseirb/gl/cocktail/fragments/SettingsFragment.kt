@@ -43,7 +43,8 @@ class SettingsFragment : Fragment() {
     private fun addSaveButtonListener() {
         binding.btnSettingsSave.setOnClickListener {
             val result:Boolean = settingsViewModel.handleSaveClicked(binding.etRecentCocktailNumber.text.toString().toInt())
-            binding.etRecentCocktailNumber.clearFocus()
+            val imm = activity?.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as? android.view.inputmethod.InputMethodManager
+            imm?.hideSoftInputFromWindow(view?.windowToken, 0)
             if(result) {
                 Toast.makeText(context, "Paramètres mis à jour avec succès.", Toast.LENGTH_SHORT).show()
             } else {
