@@ -24,9 +24,12 @@
             android:layout_height="@dimen/_30sdp"
             android:layout_weight="1"
             android:background="@drawable/search_box_background"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
             android:hint="Search Cocktail"
             android:paddingStart="@dimen/_15sdp"
-            android:paddingEnd="@dimen/_15sdp" />
+            android:paddingEnd="@dimen/_15sdp"
+            />
 
         <ImageView
             android:id="@+id/iv_filter"
