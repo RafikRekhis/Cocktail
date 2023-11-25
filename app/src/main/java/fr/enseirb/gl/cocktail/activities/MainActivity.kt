@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.toolbarMain)
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.Bottom_navigation)
         val navController = findNavController(R.id.nav_host_fragment)
