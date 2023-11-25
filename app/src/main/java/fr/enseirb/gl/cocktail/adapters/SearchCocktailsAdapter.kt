@@ -13,10 +13,33 @@ import fr.enseirb.gl.cocktail.models.Drink
 class SearchCocktailsAdapter :
     RecyclerView.Adapter<SearchCocktailsAdapter.SearchCocktailsViewHolder>() {
     private var cocktails = ArrayList<Drink>()
+    private var unfilteredCocktails = ArrayList<Drink>()
 
     fun setCocktails(cocktails: List<Drink>) {
         this.cocktails = cocktails as ArrayList<Drink>
         notifyDataSetChanged()
+    }
+
+    fun filterCocktails(category : String) {
+        if (category.isNotEmpty()) {
+            if (unfilteredCocktails.isEmpty()) {
+                unfilteredCocktails = ArrayList(cocktails)
+            }
+            val filteredCocktails = ArrayList<Drink>()
+            for (cocktail in unfilteredCocktails) {
+                if (cocktail.strCategory == category) {
+                    filteredCocktails.add(cocktail)
+                }
+            }
+            setCocktails(filteredCocktails)
+        }
+    }
+
+    fun resetFilter() {
+        if (unfilteredCocktails.isNotEmpty()) {
+            cocktails = ArrayList(unfilteredCocktails)
+            unfilteredCocktails.clear()
+        }
     }
 
     inner class SearchCocktailsViewHolder(binding: CocktailItemBinding) :
