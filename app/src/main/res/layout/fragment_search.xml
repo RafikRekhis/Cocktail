@@ -29,6 +29,16 @@
             android:paddingEnd="@dimen/_15sdp" />
 
         <ImageView
+            android:id="@+id/iv_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:src="@drawable/ic_filter"
+            app:tint="@color/g_black" />
+
+        <ImageView
             android:id="@+id/iv_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,6 +47,7 @@
             android:layout_marginEnd="@dimen/_5sdp"
             android:src="@drawable/ic_arrow"
             app:tint="@color/g_black" />
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
