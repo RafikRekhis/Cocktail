@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.activities.MainActivity
+import fr.enseirb.gl.cocktail.adapters.CategoryFilterAdapter
 import fr.enseirb.gl.cocktail.adapters.SearchCocktailsAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentSearchBinding
 import fr.enseirb.gl.cocktail.models.Category
@@ -28,6 +29,7 @@ class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
     private lateinit var viewModel: HomeViewModel
     private lateinit var searchCocktailsAdapter: SearchCocktailsAdapter
+    private lateinit var categoryFilterAdapter: CategoryFilterAdapter
     private var selectedCategory : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,42 +84,24 @@ class SearchFragment : Fragment() {
         builder.setView(filterDialog)
         val dialog = builder.create()
 
-        prepareCategoryFilter(filterDialog)
+        categoryFilterAdapter = CategoryFilterAdapter(
+            requireContext(),
+            filterDialog.findViewById(R.id.textview_filter),
+            viewModel.observeCategories().value!!,
+            selectedCategory
+        )
 
         filterDialog.findViewById<Button>(R.id.button_cancel).setOnClickListener {
             dialog.dismiss()
         }
 
         filterDialog.findViewById<Button>(R.id.button_filter).setOnClickListener {
+            selectedCategory = categoryFilterAdapter.getSelectedCategory()
             searchCocktailsAdapter.filterCocktails(selectedCategory)
             dialog.dismiss()
         }
 
         dialog.show()
-    }
-
-    private fun prepareCategoryFilter(filterDialog: View) {
-        val categories = categoryListToString(viewModel.observeCategories().value!!)
-        val autoComplete : AutoCompleteTextView = filterDialog.findViewById(R.id.textview_filter)
-        val adapter = ArrayAdapter(requireContext(), R.layout.filter_list_item, categories)
-
-        autoComplete.setAdapter(adapter)
-        if (selectedCategory.isNotEmpty()) {
-            autoComplete.setText(selectedCategory, false)
-        }
-        autoComplete.onItemClickListener = AdapterView.OnItemClickListener { adapterView, _, position, _ ->
-            val selectedItem = adapterView.getItemAtPosition(position).toString()
-            selectedCategory = selectedItem
-        }
-    }
-
-    private fun categoryListToString(categories: List<Category>): List<String> {
-        val categoryNames = ArrayList<String>()
-        categoryNames.add("")
-        for (category in categories) {
-            categoryNames.add(category.strCategory)
-        }
-        return categoryNames
     }
 
     private fun observeSearchCocktails() {
