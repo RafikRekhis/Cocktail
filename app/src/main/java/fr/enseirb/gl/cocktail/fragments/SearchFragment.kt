@@ -4,11 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.core.widget.addTextChangedListener
@@ -16,10 +12,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.activities.MainActivity
+import fr.enseirb.gl.cocktail.adapters.AlcoholFilterAdapter
 import fr.enseirb.gl.cocktail.adapters.CategoryFilterAdapter
+import fr.enseirb.gl.cocktail.adapters.GlassFilterAdapter
+import fr.enseirb.gl.cocktail.adapters.IngredientFilterAdapter
 import fr.enseirb.gl.cocktail.adapters.SearchCocktailsAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentSearchBinding
-import fr.enseirb.gl.cocktail.models.Category
 import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -30,12 +28,21 @@ class SearchFragment : Fragment() {
     private lateinit var viewModel: HomeViewModel
     private lateinit var searchCocktailsAdapter: SearchCocktailsAdapter
     private lateinit var categoryFilterAdapter: CategoryFilterAdapter
-    private var selectedCategory : String = ""
+    private lateinit var ingredientFilterAdapter: IngredientFilterAdapter
+    private lateinit var glassFilterAdapter: GlassFilterAdapter
+    private lateinit var alcoholFilterAdapter: AlcoholFilterAdapter
+    private var selectedCategory: String = ""
+    private var selectedIngredient: String = ""
+    private var selectedGlass: String = ""
+    private var selectedCocktailType: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         viewModel = (activity as MainActivity).viewModel
+        viewModel.getIngredients()
+        viewModel.getGlass()
+        viewModel.getAlcohol()
     }
 
     override fun onCreateView(
@@ -86,9 +93,30 @@ class SearchFragment : Fragment() {
 
         categoryFilterAdapter = CategoryFilterAdapter(
             requireContext(),
-            filterDialog.findViewById(R.id.textview_filter),
+            filterDialog.findViewById(R.id.tv_filter_category),
             viewModel.observeCategories().value!!,
             selectedCategory
+        )
+
+        ingredientFilterAdapter = IngredientFilterAdapter(
+            requireContext(),
+            filterDialog.findViewById(R.id.tv_filter_ingredient),
+            viewModel.observeIngredients().value!!,
+            selectedIngredient
+        )
+
+        glassFilterAdapter = GlassFilterAdapter(
+            requireContext(),
+            filterDialog.findViewById(R.id.tv_filter_glass),
+            viewModel.observeGlass().value!!,
+            selectedGlass
+        )
+
+        alcoholFilterAdapter = AlcoholFilterAdapter(
+            requireContext(),
+            filterDialog.findViewById(R.id.tv_filter_alcohol),
+            viewModel.observeAlcohol().value!!,
+            selectedCocktailType
         )
 
         filterDialog.findViewById<Button>(R.id.button_cancel).setOnClickListener {
@@ -97,7 +125,10 @@ class SearchFragment : Fragment() {
 
         filterDialog.findViewById<Button>(R.id.button_filter).setOnClickListener {
             selectedCategory = categoryFilterAdapter.getSelectedCategory()
-            searchCocktailsAdapter.filterCocktails(selectedCategory)
+            selectedIngredient = ingredientFilterAdapter.getSelectedIngredient()
+            selectedGlass = glassFilterAdapter.getSelectedGlass()
+            selectedCocktailType = alcoholFilterAdapter.getSelectedAlcohol()
+            searchCocktailsAdapter.filterCocktails(selectedCategory, selectedIngredient, selectedGlass, selectedCocktailType)
             dialog.dismiss()
         }
 

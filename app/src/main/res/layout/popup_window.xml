@@ -21,10 +21,55 @@
         android:layout_margin="@dimen/_10sdp">
 
         <AutoCompleteTextView
-            android:id="@+id/textview_filter"
+            android:id="@+id/tv_filter_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Select a category"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp">
+
+        <AutoCompleteTextView
+            android:id="@+id/tv_filter_ingredient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select an ingredient"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp">
+
+        <AutoCompleteTextView
+            android:id="@+id/tv_filter_glass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select an glass"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp">
+
+        <AutoCompleteTextView
+            android:id="@+id/tv_filter_alcohol"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select an cocktail type"
             android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
