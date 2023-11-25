@@ -32,6 +32,12 @@ class SearchCocktailsAdapter :
                 }
             }
             setCocktails(filteredCocktails)
+        } else {
+            if (unfilteredCocktails.isNotEmpty()) {
+                setCocktails(unfilteredCocktails)
+            } else {
+                setCocktails(cocktails)
+            }
         }
     }
 
