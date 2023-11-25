@@ -18,6 +18,7 @@ import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.activities.MainActivity
 import fr.enseirb.gl.cocktail.adapters.SearchCocktailsAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentSearchBinding
+import fr.enseirb.gl.cocktail.models.Category
 import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -96,7 +97,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun prepareCategoryFilter(filterDialog: View) {
-        val categories = listOf("Ordinary Drink", "Cocktail", "Shake")
+        val categories = categoryListToString(viewModel.observeCategories().value!!)
         val autoComplete : AutoCompleteTextView = filterDialog.findViewById(R.id.textview_filter)
         val adapter = ArrayAdapter(requireContext(), R.layout.filter_list_item, categories)
 
@@ -108,6 +109,15 @@ class SearchFragment : Fragment() {
             val selectedItem = adapterView.getItemAtPosition(position).toString()
             selectedCategory = selectedItem
         }
+    }
+
+    private fun categoryListToString(categories: List<Category>): List<String> {
+        val categoryNames = ArrayList<String>()
+        categoryNames.add("")
+        for (category in categories) {
+            categoryNames.add(category.strCategory)
+        }
+        return categoryNames
     }
 
     private fun observeSearchCocktails() {
