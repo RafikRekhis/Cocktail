@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.activities.MainActivity
 import fr.enseirb.gl.cocktail.databinding.FragmentSearchBinding
@@ -37,14 +38,30 @@ class SettingsFragment : Fragment() {
 
         binding = FragmentSettingsBinding.bind(view)
         binding.etRecentCocktailNumber.setText(settingsViewModel.getNbMaxRecentCocktails().toString())
+        binding.switchNightMode.isChecked = settingsViewModel.getNightMode()
+        binding.switchNightMode.setOnCheckedChangeListener { _, isChecked ->
+            settingsViewModel.handleNightModeChange(isChecked)
+            // Apply night mode immediately
+
+        }
+
         addSaveButtonListener()
     }
 
+
+
     private fun addSaveButtonListener() {
         binding.btnSettingsSave.setOnClickListener {
-            val result:Boolean = settingsViewModel.handleSaveClicked(binding.etRecentCocktailNumber.text.toString().toInt())
-            val imm = activity?.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as? android.view.inputmethod.InputMethodManager
-            imm?.hideSoftInputFromWindow(view?.windowToken, 0)
+            val result:Boolean = settingsViewModel.handleSaveClicked(binding.etRecentCocktailNumber.text.toString().toInt(), binding.switchNightMode.isChecked)
+
+            // Hide keyboard if it is currently showing
+            val imm =
+                activity?.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as? android.view.inputmethod.InputMethodManager
+            if (imm?.isActive == true) {
+                imm.hideSoftInputFromWindow(view?.windowToken, 0)
+            }
+
+            // Show toast
             if(result) {
                 Toast.makeText(context, "Paramètres mis à jour avec succès.", Toast.LENGTH_SHORT).show()
             } else {

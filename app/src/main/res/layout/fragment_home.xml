@@ -24,7 +24,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/main_font"
                 android:text="We suggest you try this cocktail"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
                 android:layout_marginTop="@dimen/_18sdp"
                 android:fontFamily="@font/main_font"
                 android:text="Last cocktails you've seen"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/random_cocktails_textview"
@@ -85,7 +85,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/main_font"
                 android:text="Categories"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/random_cocktails_textview"
@@ -100,13 +100,15 @@
                 app:cardUseCompatPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/categories_textview">
+                app:layout_constraintTop_toBottomOf="@id/categories_textview"
+                android:background="@color/white">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/categories_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scrollbars="none" />
+                    android:scrollbars="none"
+                    android:background="@color/white"/>
 
             </androidx.cardview.widget.CardView>
 

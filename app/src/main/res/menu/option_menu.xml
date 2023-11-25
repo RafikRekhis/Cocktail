@@ -2,7 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/settingsFragment"
-        android:title="Settings" />
+        android:title="Settings"
+         />
+
     <item
         android:id="@+id/searchFragment"
         android:title="Search" />

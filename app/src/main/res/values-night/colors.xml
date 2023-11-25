@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#FFFFFFFF</color>
-    <color name="text_color">#FF000000</color>
-    <color name="primary">#FFFFFFFF</color>
-    <color name="accent">#DF5BBB</color>
-    <color name="bars_background">#DF5BBB</color>
 
 
+
+    <color name="background">#47203C</color>
+    <color name="text_color">#FFFFFF</color>
+    <color name="primary_dark">#47203C</color>
+    <color name="bars_background">#47203C</color>
+    <color name="accent">#FFFFFF</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="primary_dark">#13864d</color>
+
+
+    <color name="primary">#1ab326</color>
+
+
 
     <color name="g_black">#33405f</color>
-    <color name="g_grey">#E6E6E6</color>
+    <color name="g_grey">#FFFFFF</color>
 
     <color name="red">#FF0000</color>
 
