@@ -41,8 +41,7 @@ class SettingsFragment : Fragment() {
         binding.switchNightMode.isChecked = settingsViewModel.getNightMode()
         binding.switchNightMode.setOnCheckedChangeListener { _, isChecked ->
             settingsViewModel.handleNightModeChange(isChecked)
-            // Apply night mode immediately
-
+            binding.root.requestFocus()
         }
 
         addSaveButtonListener()
@@ -52,7 +51,7 @@ class SettingsFragment : Fragment() {
 
     private fun addSaveButtonListener() {
         binding.btnSettingsSave.setOnClickListener {
-            val result:Boolean = settingsViewModel.handleSaveClicked(binding.etRecentCocktailNumber.text.toString().toInt(), binding.switchNightMode.isChecked)
+            val result:Boolean = settingsViewModel.handleSaveClicked(binding.etRecentCocktailNumber.text.toString().toInt())
 
             // Hide keyboard only if it is currently showing
             val imm =

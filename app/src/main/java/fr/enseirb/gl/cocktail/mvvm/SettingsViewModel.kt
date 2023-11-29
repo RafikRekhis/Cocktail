@@ -11,11 +11,10 @@ class SettingsViewModel(private val sharedPreferences: SharedPreferences) : View
         return sharedPreferences.getInt("maxRecentItems", 5)
     }
 
-    public fun handleSaveClicked(nbMaxRecentCocktails: Int,isChecked: Boolean): Boolean {
+    public fun handleSaveClicked(nbMaxRecentCocktails: Int): Boolean {
         if(nbMaxRecentCocktails < 0) {
             return false
         }
-
         sharedPreferences.edit().putInt("maxRecentItems", nbMaxRecentCocktails).apply()
         return true
     }
@@ -26,6 +25,13 @@ class SettingsViewModel(private val sharedPreferences: SharedPreferences) : View
 
     public fun handleNightModeChange(isChecked: Boolean) {
         sharedPreferences.edit().putBoolean("nightMode", isChecked).apply()
+        if(isChecked) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            //setTheme(R.style.Theme_CocktailNight)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            //setTheme(R.style.Theme_Cocktail)
+        }
     }
 
 

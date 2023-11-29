@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:background="@color/g_black"
     tools:context=".fragments.SettingsFragment">
     <!--
@@ -46,7 +48,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_40sdp"
-            android:padding="@dimen/_15sdp">
+            android:padding="@dimen/_15sdp"
+            >
 
             <RelativeLayout
                 android:layout_width="wrap_content"
