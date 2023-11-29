@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/bars_background"
+        android:background="@color/top_bar_background"
         >
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -45,7 +45,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/background"
+        android:background="@color/bottom_bar_background"
         app:menu="@menu/bottom_menu"
         app:itemTextColor="@color/accent"
         app:itemIconTint="@color/accent"

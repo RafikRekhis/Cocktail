@@ -4,7 +4,14 @@
     <color name="text_color">#FF000000</color>
     <color name="primary">#FFFFFFFF</color>
     <color name="accent">#DF5BBB</color>
-    <color name="bars_background">#DF5BBB</color>
+    <color name="top_bar_background">#DF5BBB</color>
+    <color name="bottom_bar_background">#FFFFFFFF</color>
+    <color name="categories_card_background">#FFFFFFFF</color>
+    <color name="categories_card_text">#FF000000</color>
+    <color name="options_menu_background"> #33405f </color>
+    <color name="options_menu_text"> #FFFFFFFF </color>
+
+
 
 
 

@@ -8,8 +8,19 @@
     </style>
 
     <style name="CustomToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:itemBackground">@color/options_menu_background</item>
     </style>
 
+
+
     <style name="Theme.Cocktail" parent="Base.Theme.Cocktail" />
+
+    <style name="AppTheme.PopupMenu" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@color/options_menu_background</item>
+    </style>
+
+    <style name="Custom" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:itemBackground">@color/options_menu_background</item>
+    </style>
 
 </resources>

@@ -54,11 +54,12 @@ class SettingsFragment : Fragment() {
         binding.btnSettingsSave.setOnClickListener {
             val result:Boolean = settingsViewModel.handleSaveClicked(binding.etRecentCocktailNumber.text.toString().toInt(), binding.switchNightMode.isChecked)
 
-            // Hide keyboard if it is currently showing
+            // Hide keyboard only if it is currently showing
             val imm =
                 activity?.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as? android.view.inputmethod.InputMethodManager
             if (imm?.isActive == true) {
                 imm.hideSoftInputFromWindow(view?.windowToken, 0)
+                view?.clearFocus() // Clear focus from the current view
             }
 
             // Show toast

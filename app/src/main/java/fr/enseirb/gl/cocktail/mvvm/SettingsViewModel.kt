@@ -15,12 +15,7 @@ class SettingsViewModel(private val sharedPreferences: SharedPreferences) : View
         if(nbMaxRecentCocktails < 0) {
             return false
         }
-        sharedPreferences.edit().putBoolean("nightMode", isChecked).apply()
-        if (isChecked) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
+
         sharedPreferences.edit().putInt("maxRecentItems", nbMaxRecentCocktails).apply()
         return true
     }

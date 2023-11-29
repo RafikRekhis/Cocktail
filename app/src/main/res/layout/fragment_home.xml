@@ -101,14 +101,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/categories_textview"
-                android:background="@color/white">
+                android:background="@color/categories_card_background">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/categories_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scrollbars="none"
-                    android:background="@color/white"/>
+                    android:background="@color/categories_card_background"
+                    />
 
             </androidx.cardview.widget.CardView>
 

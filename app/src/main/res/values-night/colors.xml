@@ -6,10 +6,16 @@
     <color name="background">#47203C</color>
     <color name="text_color">#FFFFFF</color>
     <color name="primary_dark">#47203C</color>
-    <color name="bars_background">#47203C</color>
+    <color name="top_bar_background">#2B1324</color>
+    <color name="bottom_bar_background">#2B1324</color>
+    <color name="categories_card_background">#643E59</color>
+    <color name="categories_card_text">#FFFFFF</color>
     <color name="accent">#FFFFFF</color>
 
-    <color name="black">#FF000000</color>
+    <color name="options_menu"> #643E59 </color>
+
+
+<color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
 
@@ -27,7 +33,7 @@
 
     <color name="violet">#49223F</color>
     <color name="violet_dark">#47203C</color>
-    <color name="razzle_dazzle_rose">#DF5BBB</color>
+
     <color name="Fandango">#B34C96</color>
 
 </resources>
