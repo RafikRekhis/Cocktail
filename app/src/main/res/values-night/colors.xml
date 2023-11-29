@@ -12,7 +12,8 @@
     <color name="categories_card_text">#FFFFFF</color>
     <color name="accent">#FFFFFF</color>
 
-    <color name="options_menu"> #643E59 </color>
+    <color name="options_menu_background">#643E59</color>
+    <color name="options_menu_text"> #FFFFFFFF </color>
 
 
 <color name="black">#FF000000</color>

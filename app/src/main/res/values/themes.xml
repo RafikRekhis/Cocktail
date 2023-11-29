@@ -15,12 +15,15 @@
 
     <style name="Theme.Cocktail" parent="Base.Theme.Cocktail" />
 
-    <style name="AppTheme.PopupMenu" parent="Widget.AppCompat.PopupMenu">
-        <item name="android:popupBackground">@color/options_menu_background</item>
-    </style>
 
     <style name="Custom" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:itemBackground">@color/options_menu_background</item>
+        <item name="android:textColor">@color/options_menu_text</item>
+        <item name="actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
+
     </style>
+    <style name="OverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+    <item name="android:tint">@color/white</item>
+</style>
 
 </resources>

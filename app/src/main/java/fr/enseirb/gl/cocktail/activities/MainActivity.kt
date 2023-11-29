@@ -51,6 +51,8 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         NavigationUI.setupWithNavController(bottomNavigation, navController)
+        setTheme(R.style.Custom)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

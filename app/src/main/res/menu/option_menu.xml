@@ -10,30 +10,25 @@
     <item
         android:id="@+id/settingsFragment"
         android:title="Settings"
-        android:background="@color/options_menu_background"
-        android:titleTextColor="@color/options_menu_text" />
+     />
 
     <item
         android:id="@+id/searchFragment"
         android:title="Search"
-        android:background="@color/options_menu_background"
-        android:titleTextColor="@color/options_menu_text" />
+    />
 
     <item
         android:id="@+id/ingredientsFragment"
         android:title="Ingredients"
-        android:background="@color/options_menu_background"
-        android:titleTextColor="@color/options_menu_text" />
+    />
 
     <item
         android:id="@+id/glassFragment"
         android:title="Glass"
-        android:background="@color/options_menu_background"
-        android:titleTextColor="@color/options_menu_text" />
+     />
 
     <item
         android:id="@+id/alcoholFragment"
         android:title="Cocktail Type"
-        android:background="@color/options_menu_background"
-        android:titleTextColor="@color/options_menu_text" />
+   />
 </menu>
