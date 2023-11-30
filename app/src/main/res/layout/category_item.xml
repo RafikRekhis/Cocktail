@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/_8sdp"
+    android:layout_marginHorizontal="@dimen/_20sdp"
+    android:layout_marginVertical="@dimen/_16sdp"
+    app:cardElevation="@dimen/_2sdp"
+    android:layout_marginTop="@dimen/_20sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/categories_card_background">
+
+        <TextView
+            android:id="@+id/tv_category_name"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:fontFamily="@font/main_font"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/_15ssp"
+            android:gravity="start"
+            android:padding="@dimen/_10sdp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow"
+            android:padding="@dimen/_10sdp"
+            android:layout_gravity="center_vertical"
+            app:tint="@color/category_arrow"/>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

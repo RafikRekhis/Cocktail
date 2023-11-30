@@ -91,27 +91,29 @@
                 app:layout_constraintStart_toStartOf="@id/random_cocktails_textview"
                 app:layout_constraintTop_toBottomOf="@id/last_cocktails_recyclerview" />
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_25sdp"
                 android:layout_marginEnd="@dimen/_25sdp"
-                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardElevation="0dp"
                 app:cardUseCompatPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/categories_textview"
-                android:background="@color/categories_card_background">
+                android:layout_marginBottom="@dimen/_50sdp"
+            >
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/categories_recyclerview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scrollbars="none"
-                    android:background="@color/categories_card_background"
-                    />
 
-            </androidx.cardview.widget.CardView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/categories_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:background="@color/background"
+                />
+
+        </com.google.android.material.card.MaterialCardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

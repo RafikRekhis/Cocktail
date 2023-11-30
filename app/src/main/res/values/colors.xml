@@ -10,6 +10,7 @@
     <color name="categories_card_text">#FF000000</color>
     <color name="options_menu_background">#59364F</color>
     <color name="options_menu_text"> #FFFFFFFF </color>
+    <color name="category_arrow">#FF000000</color>
 
 
 

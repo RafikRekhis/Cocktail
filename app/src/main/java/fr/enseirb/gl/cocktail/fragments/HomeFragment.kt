@@ -25,6 +25,7 @@ class HomeFragment : Fragment() {
     private lateinit var randomCocktail: Drink
     private lateinit var categoriesAdapter: CategoriesAdapter
     private lateinit var recentViewedCocktailAdapter: RecentViewedCocktailAdapter
+    private val spacing = 30
 
     companion object {
         const val COCKTAIL_ID = "cocktail_id"
@@ -32,6 +33,7 @@ class HomeFragment : Fragment() {
         const val COCKTAIL_IMAGE = "cocktail_image"
         const val FILTER_NAME = "category_name"
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,12 +105,16 @@ class HomeFragment : Fragment() {
     }
 
     private fun prepareCategoriesRecyclerView() {
-        categoriesAdapter = CategoriesAdapter()
+        categoriesAdapter = CategoriesAdapter(spacing)
         binding.categoriesRecyclerview.apply {
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
             adapter = categoriesAdapter
+
+            // Add ItemDecoration to the RecyclerView
+            addItemDecoration(CategoriesAdapter.CategoryItemDecoration(spacing))
         }
     }
+
 
     private fun observeCategories() {
         homeViewModel.observeCategories().observe(viewLifecycleOwner) { categories ->
