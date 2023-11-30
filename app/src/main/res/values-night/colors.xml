@@ -15,6 +15,10 @@
     <color name="options_menu_background">#643E59</color>
     <color name="options_menu_text"> #FFFFFFFF </color>
     <color name="category_arrow">#FFFFFFFF</color>
+    <color name="cocktail_details_titles">#DF5BBB</color>
+    <color name="cocktail_details_text">#FFFFFFFF</color>
+    <color name="cocktail_details_icons">#FFFFFFFF</color>
+    <color name="favorite_icon_background">#DF5BBB</color>
 
 
 <color name="black">#FF000000</color>

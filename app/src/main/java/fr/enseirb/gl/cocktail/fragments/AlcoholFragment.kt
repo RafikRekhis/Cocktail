@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import fr.enseirb.gl.cocktail.activities.AlcoholCocktailsActivity
 import fr.enseirb.gl.cocktail.activities.MainActivity
 import fr.enseirb.gl.cocktail.adapters.AlcoholAdapter
+import fr.enseirb.gl.cocktail.adapters.CategoriesAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentAlcoholBinding
 import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
 
@@ -17,6 +18,7 @@ class AlcoholFragment : Fragment() {
     private lateinit var binding: FragmentAlcoholBinding
     private lateinit var alcoholAdapter: AlcoholAdapter
     private lateinit var viewModel: HomeViewModel
+    private val spacing = 40
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,10 +52,12 @@ class AlcoholFragment : Fragment() {
     }
 
     private fun prepareAlcoholRecyclerView() {
-        alcoholAdapter = AlcoholAdapter()
+        alcoholAdapter = AlcoholAdapter(spacing)
         binding.rvAlcohol.apply {
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
             adapter = alcoholAdapter
+
+            addItemDecoration(AlcoholAdapter.AlcoholItemDecoration(spacing))
         }
     }
 

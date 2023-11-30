@@ -13,6 +13,7 @@ class AlcoholCocktailsActivity : AppCompatActivity() {
     private lateinit var alcoholCocktailsViewModel: AlcoholCocktailsViewModel
     private lateinit var alcoholCocktailsAdapter: AlcoholCocktailsAdapter
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAlcoholCocktailsBinding.inflate(layoutInflater)
