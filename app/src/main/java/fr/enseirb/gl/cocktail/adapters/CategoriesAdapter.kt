@@ -55,9 +55,10 @@ class CategoriesAdapter(private val spacing: Int) : RecyclerView.Adapter<Categor
             val position = parent.getChildAdapterPosition(view)
 
             // Add spacing to all items except the first one
-            if (position > 0) {
+            if (position == 0) {
                 outRect.top = spacing
             }
+            outRect.bottom = spacing
         }
     }
 }

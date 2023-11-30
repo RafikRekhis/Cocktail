@@ -15,6 +15,7 @@
         android:fitsSystemWindows="true"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@color/top_bar_background"
+
         >
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -22,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:titleTextColor="@color/white"
+            app:navigationIconTint="@color/white"
             />
 
     </com.google.android.material.appbar.AppBarLayout>
