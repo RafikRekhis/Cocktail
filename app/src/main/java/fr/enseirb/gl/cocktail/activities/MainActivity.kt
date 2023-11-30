@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        setSupportActionBar(binding.toolbar)
-        //setSupportActionBar(binding.toolbarMain)
+        //setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.toolbarMain)
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.Bottom_navigation)
         val navController = findNavController(R.id.nav_host_fragment)
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             //setTheme(R.style.Theme_Cocktail)
         }
-        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar_main)
         toolbar.setNavigationIconTint(getColor(R.color.white))
 
     }
