@@ -9,9 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.activities.MainActivity
-import fr.enseirb.gl.cocktail.databinding.FragmentSearchBinding
 import fr.enseirb.gl.cocktail.databinding.FragmentSettingsBinding
-import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
 import fr.enseirb.gl.cocktail.mvvm.SettingsViewModel
 
 class SettingsFragment : Fragment() {

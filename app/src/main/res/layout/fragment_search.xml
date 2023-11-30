@@ -24,19 +24,33 @@
             android:layout_height="@dimen/_30sdp"
             android:layout_weight="1"
             android:background="@drawable/search_box_background"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
             android:hint="Search Cocktail"
             android:paddingStart="@dimen/_15sdp"
-            android:paddingEnd="@dimen/_15sdp" />
+            android:paddingEnd="@dimen/_15sdp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:src="@drawable/ic_filter"
+            app:tint="@color/g_black" />
 
         <ImageView
             android:id="@+id/iv_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_5sdp"
             android:src="@drawable/ic_arrow"
             app:tint="@color/g_black" />
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

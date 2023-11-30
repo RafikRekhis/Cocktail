@@ -3,6 +3,7 @@ package fr.enseirb.gl.cocktail.activities
 import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -33,6 +34,9 @@ class CocktailDetailsActivity : AppCompatActivity() {
         binding = ActivityCocktailDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.toolbarDetails)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         cocktailDetailsViewModel =
             CocktailDetailsViewModel(getSharedPreferences("sharedPref", MODE_PRIVATE))
 
@@ -44,6 +48,17 @@ class CocktailDetailsActivity : AppCompatActivity() {
         observeCocktailDetails()
 
         handleFavoritesButton()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun firstColorFavoriteButton() {
