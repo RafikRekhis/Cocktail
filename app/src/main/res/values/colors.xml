@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="background">#FFFFFFFF</color>
+    <color name="text_color">#FF000000</color>
+    <color name="primary">#FFFFFFFF</color>
+    <color name="accent">#DF5BBB</color>
+    <color name="top_bar_background">#DF5BBB</color>
+    <color name="bottom_bar_background">#FFFFFFFF</color>
+    <color name="categories_card_background">#FFFFFFFF</color>
+    <color name="categories_card_text">#FF000000</color>
+    <color name="options_menu_background">#59364F</color>
+    <color name="options_menu_text"> #FFFFFFFF </color>
+    <color name="category_arrow">#FF000000</color>
+    <color name="cocktail_details_titles">#33405f</color>
+    <color name="cocktail_details_text">#FF000000</color>
+    <color name="cocktail_details_icons">#FF000000</color>
+    <color name="favorite_icon_background">#DF5BBB</color>
+
+
+
+
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="primary">#1ab326</color>
     <color name="primary_dark">#13864d</color>
-    <color name="accent">#2070df</color>
 
     <color name="g_black">#33405f</color>
     <color name="g_grey">#E6E6E6</color>
@@ -13,4 +31,10 @@
     <color name="red">#FF0000</color>
 
     <color name="SplashScrene">#542F4A</color>
+
+    <color name="violet">#49223F</color>
+    <color name="violet_dark">#47203C</color>
+    <color name="razzle_dazzle_rose">#DF5BBB</color>
+    <color name="Fandango">#B34C96</color>
+
 </resources>

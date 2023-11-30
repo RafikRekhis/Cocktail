@@ -8,6 +8,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_glass"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:layout_marginEnd="@dimen/_25sdp"
+        />
 
 </FrameLayout>

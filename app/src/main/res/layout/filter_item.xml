@@ -11,7 +11,7 @@
         android:layout_marginTop="@dimen/_3sdp"
         android:fontFamily="@font/main_font"
         android:text="Filter Name"
-        android:textColor="@color/black"
+        android:textColor="@color/categories_card_text"
         android:textSize="@dimen/_15ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

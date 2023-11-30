@@ -4,13 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.IngredientCocktailsActivity">
+    tools:context=".activities.IngredientCocktailsActivity"
+    android:background="@color/background"
+    >
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_ingredient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="@dimen/_8sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fitsSystemWindows="true"
+        android:background="@color/top_bar_background"
+        >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_ingredient"
@@ -23,13 +29,17 @@
         android:id="@+id/tv_ingredient_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:fontFamily="@font/main_font"
-        android:textColor="@color/accent"
+        android:textColor="@color/white"
         android:textSize="@dimen/_15ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appbar_ingredient"/>
+        app:layout_constraintTop_toBottomOf="@id/appbar_ingredient"
+        android:background="@drawable/round_cocktail_number_frame"
+        android:padding="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_ingredient_cocktails"

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import fr.enseirb.gl.cocktail.activities.GlassCocktailsActivity
 import fr.enseirb.gl.cocktail.activities.MainActivity
+import fr.enseirb.gl.cocktail.adapters.AlcoholAdapter
 import fr.enseirb.gl.cocktail.adapters.GlassAdapter
 import fr.enseirb.gl.cocktail.databinding.FragmentGlassBinding
 import fr.enseirb.gl.cocktail.mvvm.HomeViewModel
@@ -17,6 +18,8 @@ class GlassFragment : Fragment() {
     private lateinit var binding: FragmentGlassBinding
     private lateinit var glassAdapter: GlassAdapter
     private lateinit var viewModel: HomeViewModel
+
+    private val spacing = 30
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,10 +53,12 @@ class GlassFragment : Fragment() {
     }
 
     private fun prepareGlassRecyclerView() {
-        glassAdapter = GlassAdapter()
+        glassAdapter = GlassAdapter(spacing)
         binding.rvGlass.apply {
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
             adapter = glassAdapter
+
+            addItemDecoration(GlassAdapter.GlassItemDecoration(spacing))
         }
     }
 

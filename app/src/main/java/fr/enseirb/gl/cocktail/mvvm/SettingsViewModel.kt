@@ -2,6 +2,7 @@ package fr.enseirb.gl.cocktail.mvvm
 
 import android.content.SharedPreferences
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModel
 
 class SettingsViewModel(private val sharedPreferences: SharedPreferences) : ViewModel() {
@@ -16,6 +17,21 @@ class SettingsViewModel(private val sharedPreferences: SharedPreferences) : View
         }
         sharedPreferences.edit().putInt("maxRecentItems", nbMaxRecentCocktails).apply()
         return true
+    }
+
+    public fun getNightMode(): Boolean {
+        return sharedPreferences.getBoolean("nightMode", true)
+    }
+
+    public fun handleNightModeChange(isChecked: Boolean) {
+        sharedPreferences.edit().putBoolean("nightMode", isChecked).apply()
+        if(isChecked) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            //setTheme(R.style.Theme_CocktailNight)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            //setTheme(R.style.Theme_Cocktail)
+        }
     }
 
 

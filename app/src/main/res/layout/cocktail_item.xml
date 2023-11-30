@@ -5,11 +5,14 @@
     android:layout_height="wrap_content"
     android:elevation="@dimen/_2sdp"
     app:cardCornerRadius="@dimen/_5sdp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/categories_card_background">
 
         <ImageView
             android:id="@+id/iv_cocktail_image"
@@ -27,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/main_font"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:textSize="@dimen/_15ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.graphics.toColor
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import fr.enseirb.gl.cocktail.R
 import fr.enseirb.gl.cocktail.databinding.ActivityMainBinding
@@ -33,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         setSupportActionBar(binding.toolbar)
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.Bottom_navigation)
@@ -41,6 +46,17 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         NavigationUI.setupWithNavController(bottomNavigation, navController)
+        setTheme(R.style.Custom)
+        if(settingsViewModel.getNightMode()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            //setTheme(R.style.Theme_CocktailNight)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            //setTheme(R.style.Theme_Cocktail)
+        }
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        toolbar.setNavigationIconTint(getColor(R.color.white))
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

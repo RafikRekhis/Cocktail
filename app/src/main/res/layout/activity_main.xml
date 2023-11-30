@@ -4,19 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.MainActivity"
+    android:background="@color/background"
+    >
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/top_bar_background"
+
+        >
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@color/white"
+            app:navigationIconTint="@color/white"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -39,6 +47,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_menu" />
+        android:background="@color/bottom_bar_background"
+        app:menu="@menu/bottom_menu"
+        app:itemTextColor="@color/accent"
+        app:itemIconTint="@color/accent"
+        app:compatShadowEnabled="true"
+
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,6 +17,8 @@ class CategoriesFragment : Fragment() {
     private lateinit var binding: FragmentCategoriesBinding
     private lateinit var categoriesAdapter: CategoriesAdapter
     private lateinit var viewModel: HomeViewModel
+    private val spacing = 30
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,11 +52,15 @@ class CategoriesFragment : Fragment() {
     }
 
     private fun prepareCategoriesRecyclerView() {
-        categoriesAdapter = CategoriesAdapter()
+        categoriesAdapter = CategoriesAdapter(spacing)
         binding.rvCategories.apply {
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
             adapter = categoriesAdapter
+
+            addItemDecoration(CategoriesAdapter.CategoryItemDecoration(spacing))
         }
+
+
     }
 
     private fun observeCategories() {

@@ -10,7 +10,9 @@
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:background="@color/top_bar_background"
+        >
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
@@ -47,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_10sdp"
         android:src="@drawable/favorites"
-        app:backgroundTint="@color/accent"
+        app:backgroundTint="@color/favorite_icon_background"
         app:layout_anchor="@id/appBar"
         app:layout_anchorGravity="bottom|end"
         app:tint="@color/white" />
@@ -55,7 +57,9 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:background="@color/background"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -81,8 +85,10 @@
                     android:drawableLeft="@drawable/categories"
                     android:drawablePadding="5dp"
                     android:text="Category : "
-                    android:textColor="@color/g_black"
-                    android:textSize="14sp" />
+                    android:textColor="@color/cocktail_details_text"
+                    android:textSize="14sp"
+
+                    />
 
                 <TextView
                     android:id="@+id/tv_glass_info"
@@ -93,8 +99,10 @@
                     android:drawableLeft="@drawable/glass"
                     android:drawablePadding="5dp"
                     android:text="Glass : "
-                    android:textColor="@color/g_black"
-                    android:textSize="14sp" />
+                    android:textColor="@color/cocktail_details_text"
+                    android:textSize="14sp"
+                    app:tint="@color/cocktail_details_icons"
+                    />
 
             </LinearLayout>
 
@@ -107,10 +115,12 @@
                 android:drawableLeft="@drawable/alcohol"
                 android:drawablePadding="5dp"
                 android:text="Cocktail type : "
-                android:textColor="@color/g_black"
+                android:textColor="@color/cocktail_details_text"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cocktail_info"/>
+                app:layout_constraintTop_toBottomOf="@id/cocktail_info"
+                app:tint="@color/cocktail_details_icons"
+                />
 
             <TextView
                 android:id="@+id/tv_ingredients"
@@ -121,7 +131,7 @@
                 android:fontFamily="@font/main_font"
                 android:includeFontPadding="false"
                 android:text="- Ingredients : "
-                android:textColor="@color/g_black"
+                android:textColor="@color/cocktail_details_titles"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -133,7 +143,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
-                android:textColor="@color/black"
+                android:textColor="@color/cocktail_details_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_ingredients" />
@@ -147,7 +157,7 @@
                 android:fontFamily="@font/main_font"
                 android:includeFontPadding="false"
                 android:text="- Instructions : "
-                android:textColor="@color/g_black"
+                android:textColor="@color/cocktail_details_titles"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -159,7 +169,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
-                android:textColor="@color/black"
+                android:textColor="@color/cocktail_details_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_instructions" />

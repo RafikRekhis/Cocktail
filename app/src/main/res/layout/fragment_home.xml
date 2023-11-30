@@ -24,7 +24,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/main_font"
                 android:text="We suggest you try this cocktail"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
                 android:layout_marginTop="@dimen/_18sdp"
                 android:fontFamily="@font/main_font"
                 android:text="Last cocktails you've seen"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/random_cocktails_textview"
@@ -85,30 +85,35 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/main_font"
                 android:text="Categories"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/random_cocktails_textview"
                 app:layout_constraintTop_toBottomOf="@id/last_cocktails_recyclerview" />
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_25sdp"
                 android:layout_marginEnd="@dimen/_25sdp"
-                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardElevation="0dp"
                 app:cardUseCompatPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/categories_textview">
+                app:layout_constraintTop_toBottomOf="@id/categories_textview"
+                android:layout_marginBottom="@dimen/_50sdp"
+            >
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/categories_recyclerview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scrollbars="none" />
 
-            </androidx.cardview.widget.CardView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/categories_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:background="@color/background"
+                />
+
+        </com.google.android.material.card.MaterialCardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
