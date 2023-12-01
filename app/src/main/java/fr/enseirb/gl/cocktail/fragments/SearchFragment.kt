@@ -41,6 +41,7 @@ class SearchFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         viewModel = (activity as MainActivity).viewModel
+        viewModel.getCategories()
         viewModel.getIngredients()
         viewModel.getGlass()
         viewModel.getAlcohol()
