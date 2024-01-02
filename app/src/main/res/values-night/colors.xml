@@ -19,7 +19,9 @@
     <color name="cocktail_details_text">#FFFFFFFF</color>
     <color name="cocktail_details_icons">#FFFFFFFF</color>
     <color name="favorite_icon_background">#DF5BBB</color>
-
+    <color name="popup_button_background_color">#FFFFFFFF</color>
+    <color name="popup_button_text_color">#FF000000</color>
+    <color name="popup_text_color">#FFFFFFFF</color>
 
 <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

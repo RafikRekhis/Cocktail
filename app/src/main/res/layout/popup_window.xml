@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/_10sdp"
-    android:background="@color/g_grey"
+    android:background="@color/options_menu_background"
     android:orientation="vertical">
 
     <TextView
@@ -12,65 +13,95 @@
         android:layout_margin="@dimen/_10sdp"
         android:text="Filter by"
         android:textSize="@dimen/_16ssp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/options_menu_text"
+    />
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:textColorHint="@color/popup_text_color"
+        style="@style/MyTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp">
 
         <AutoCompleteTextView
             android:id="@+id/tv_filter_category"
+            style="@style/MyAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Select a category"
-            android:inputType="none" />
+            android:inputType="none"
+            android:popupTheme="@style/MyDropDownListBackground"
+            android:textColorHint="@color/popup_text_color"
+            android:textColor="@color/popup_text_color"
+        />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:textColorHint="@color/popup_text_color"
+        style="@style/MyTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp">
 
         <AutoCompleteTextView
             android:id="@+id/tv_filter_ingredient"
+            style="@style/MyAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Select an ingredient"
-            android:inputType="none" />
+            android:inputType="none"
+            android:popupTheme="@style/MyDropDownListBackground"
+            android:textColorHint="@color/popup_text_color"
+            android:textColor="@color/popup_text_color"
+
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:textColorHint="@color/popup_text_color"
+        style="@style/MyTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp">
 
         <AutoCompleteTextView
             android:id="@+id/tv_filter_glass"
+            style="@style/MyAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Select an glass"
-            android:inputType="none" />
+            android:inputType="none"
+            android:popupTheme="@style/MyDropDownListBackground"
+            android:textColorHint="@color/popup_text_color"
+            android:textColor="@color/popup_text_color"
+
+
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:textColorHint="@color/popup_text_color"
+        style="@style/MyTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp">
 
         <AutoCompleteTextView
             android:id="@+id/tv_filter_alcohol"
+
+            style="@style/MyAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Select an cocktail type"
-            android:inputType="none" />
+            android:inputType="none"
+            android:popupTheme="@style/MyDropDownListBackground"
+            android:textColorHint="@color/popup_text_color"
+            android:textColor="@color/popup_text_color"
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,7 +116,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
             android:text="Cancel"
-            android:textColor="@color/white" />
+            android:textColor="@color/popup_button_text_color"
+            android:backgroundTint="@color/popup_button_background_color"/>
 
         <Button
             android:id="@+id/button_filter"
@@ -93,7 +125,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
             android:text="Filter"
-            android:textColor="@color/white" />
+            android:textColor="@color/popup_button_text_color"
+            android:backgroundTint="@color/popup_button_background_color" />
 
     </LinearLayout>
 

@@ -26,4 +26,19 @@
     <item name="android:tint">@color/white</item>
 </style>
 
+    <style name="MyTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxStrokeColor">@color/popup_text_color</item>
+        <item name="endIconTint">@color/popup_text_color</item>
+        <item name="hintTextColor"> @color/popup_text_color</item>
+
+    </style>
+    <style name="MyDropDownListBackground" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:popupBackground">@color/options_menu_background</item>
+    </style>
+    <style name="MyAutoCompleteTextView" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:popupBackground">@color/options_menu_background</item>
+    </style>
+
+
+
 </resources>
