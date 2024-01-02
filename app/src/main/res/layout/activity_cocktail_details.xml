@@ -38,7 +38,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 app:layout_collapseMode="pin"
-                app:titleTextColor="@color/white" />
+                android:background="@color/top_bar_background"
+                app:titleTextColor="@color/white"
+                />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>

@@ -37,6 +37,7 @@
     </style>
     <style name="MyAutoCompleteTextView" parent="Widget.AppCompat.AutoCompleteTextView">
         <item name="android:popupBackground">@color/options_menu_background</item>
+
     </style>
 
 

@@ -39,7 +39,7 @@
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp"
             android:src="@drawable/ic_filter"
-            app:tint="@color/g_black" />
+            app:tint="@color/accent" />
 
         <ImageView
             android:id="@+id/iv_search"
@@ -49,7 +49,7 @@
             android:paddingStart="@dimen/_5sdp"
             android:paddingEnd="@dimen/_5sdp"
             android:src="@drawable/ic_arrow"
-            app:tint="@color/g_black" />
+            app:tint="@color/accent" />
 
     </LinearLayout>
 
