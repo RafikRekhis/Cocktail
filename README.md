@@ -21,7 +21,7 @@ In our application, we have three pages that can be accessed from the bottom nav
 - **Home Page:**
   Contains a random cocktail suggestion, a list of the most recently viewed cocktails, and a list of cocktail categories. Tapping on a cocktail image navigates to the Cocktail Details page where details can be viewed and the cocktail can be added to favorites.
 
-![Home Page](images/home.jpg)
+![Home Page](images/home.jpg){:height="50%"}
 
 - **Favorites Page:**
   Contains a list of favorite cocktails.
