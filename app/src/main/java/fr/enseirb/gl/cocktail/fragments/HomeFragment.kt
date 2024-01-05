@@ -2,6 +2,8 @@ package fr.enseirb.gl.cocktail.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,6 +55,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        onLoading()
+
         homeViewModel.getRandomCocktail()
         observeRandomCocktail()
         onRandomCocktailClick()
@@ -65,6 +69,28 @@ class HomeFragment : Fragment() {
 
         homeViewModel.getRecentViewedCocktails()
         observeRecentViewedCocktails()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            onResponse()
+        }, 2000)
+    }
+
+    private fun onLoading() {
+        binding.homeProgressCircle.visibility = View.VISIBLE
+        binding.randomCocktailImage.visibility = View.GONE
+        binding.categoriesTextview.visibility = View.GONE
+        binding.categoriesRecyclerview.visibility = View.GONE
+        binding.lastCocktailsTextview.visibility = View.GONE
+        binding.lastCocktailsRecyclerview.visibility = View.GONE
+    }
+
+    private fun onResponse() {
+        binding.homeProgressCircle.visibility = View.GONE
+        binding.randomCocktailImage.visibility = View.VISIBLE
+        binding.categoriesTextview.visibility = View.VISIBLE
+        binding.categoriesRecyclerview.visibility = View.VISIBLE
+        binding.lastCocktailsTextview.visibility = View.VISIBLE
+        binding.lastCocktailsRecyclerview.visibility = View.VISIBLE
     }
 
     override fun onResume() {

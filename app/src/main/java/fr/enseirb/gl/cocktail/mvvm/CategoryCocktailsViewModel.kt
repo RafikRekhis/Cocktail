@@ -22,8 +22,6 @@ class CategoryCocktailsViewModel : ViewModel() {
                     response.body()?.let { cocktailList ->
                         categoryCocktailsLiveData.postValue(cocktailList.drinks)
                     }
-
-                    Thread.sleep(3000)
                 }
 
                 override fun onFailure(call: Call<CocktailByFilterList>, t: Throwable) {
