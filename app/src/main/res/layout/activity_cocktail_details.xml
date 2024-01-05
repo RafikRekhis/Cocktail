@@ -184,6 +184,7 @@
         android:layout_height="wrap_content"
         android:indeterminate="true"
         android:visibility="gone"
+        app:trackThickness="@dimen/_10sdp"
         app:layout_anchor="@id/appBar"
         app:layout_anchorGravity="bottom|end" />
 

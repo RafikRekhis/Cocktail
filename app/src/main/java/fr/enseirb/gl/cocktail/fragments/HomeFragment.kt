@@ -53,6 +53,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        onLoading()
+
         homeViewModel.getRandomCocktail()
         observeRandomCocktail()
         onRandomCocktailClick()
@@ -65,6 +67,24 @@ class HomeFragment : Fragment() {
 
         homeViewModel.getRecentViewedCocktails()
         observeRecentViewedCocktails()
+
+        onResponse()
+    }
+
+    private fun onLoading() {
+        binding.randomCocktailImage.visibility = View.GONE
+        binding.categoriesTextview.visibility = View.GONE
+        binding.categoriesRecyclerview.visibility = View.GONE
+        binding.lastCocktailsTextview.visibility = View.GONE
+        binding.lastCocktailsRecyclerview.visibility = View.GONE
+    }
+
+    private fun onResponse() {
+        binding.randomCocktailImage.visibility = View.VISIBLE
+        binding.categoriesTextview.visibility = View.VISIBLE
+        binding.categoriesRecyclerview.visibility = View.VISIBLE
+        binding.lastCocktailsTextview.visibility = View.VISIBLE
+        binding.lastCocktailsRecyclerview.visibility = View.VISIBLE
     }
 
     override fun onResume() {
