@@ -2,6 +2,7 @@ package fr.enseirb.gl.cocktail.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import fr.enseirb.gl.cocktail.adapters.CategoryCocktailsAdapter
 import fr.enseirb.gl.cocktail.databinding.ActivityCategoryCocktailsBinding
@@ -18,6 +19,8 @@ class CategoryCocktailsActivity : AppCompatActivity() {
         binding = ActivityCategoryCocktailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        onLoading()
+
         if (intent.getStringExtra(HomeFragment.FILTER_NAME) != null) {
             binding.toolbarCategory.title = intent.getStringExtra(HomeFragment.FILTER_NAME)
         }
@@ -32,12 +35,25 @@ class CategoryCocktailsActivity : AppCompatActivity() {
         prepareRecyclerView()
 
         categoryCocktailsViewModel = CategoryCocktailsViewModel()
-
         categoryCocktailsViewModel.getCategoryCocktails(intent.getStringExtra(HomeFragment.FILTER_NAME)!!)
         categoryCocktailsViewModel.observeCategoryCocktails().observe(this) { categoryCocktails ->
             binding.tvCategoryCount.text = "${categoryCocktails.size} cocktails"
             categoryCocktailsAdapter.setCocktails(categoryCocktails)
+
+            onResponse()
         }
+    }
+
+    private fun onLoading() {
+        binding.progressCircle.visibility = View.VISIBLE
+        binding.tvCategoryCount.visibility = View.GONE
+        binding.rvCategoryCocktails.visibility = View.GONE
+    }
+
+    private fun onResponse() {
+        binding.progressCircle.visibility = View.GONE
+        binding.tvCategoryCount.visibility = View.VISIBLE
+        binding.rvCategoryCocktails.visibility = View.VISIBLE
     }
 
     private fun prepareRecyclerView() {
