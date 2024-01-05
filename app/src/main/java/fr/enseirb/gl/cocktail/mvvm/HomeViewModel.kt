@@ -102,8 +102,6 @@ class HomeViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
                 response.body()?.let { categoryList ->
                     categoriesLiveData.postValue(categoryList.drinks)
                 }
-
-                Thread.sleep(3000)
             }
 
             override fun onFailure(call: Call<CategoryList>, t: Throwable) {
