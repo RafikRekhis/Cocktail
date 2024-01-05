@@ -4,24 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.CategoryCocktailsActivity"
     android:background="@color/background"
-    >
+    tools:context=".activities.CategoryCocktailsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_8sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:fitsSystemWindows="true"
         android:background="@color/top_bar_background"
-        >
+        android:fitsSystemWindows="true"
+        android:padding="@dimen/_8sdp"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_category"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"/>
+            android:layout_height="@dimen/_30sdp" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -31,15 +29,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/round_cocktail_number_frame"
         android:fontFamily="@font/main_font"
+        android:padding="@dimen/_10sdp"
         android:textColor="@color/white"
         android:textSize="@dimen/_15ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appbar_category"
-        android:background="@drawable/round_cocktail_number_frame"
-        android:padding="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
 
         />
 
@@ -51,5 +49,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_category_count" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressCircle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:indicatorColor="@color/accent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
