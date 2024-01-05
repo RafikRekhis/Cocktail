@@ -15,8 +15,13 @@
 
 In our application, we have three pages that can be accessed from the bottom navigation bar: Home, Favorites, and Categories. There is also an options menu, accessed by the app bar, allowing navigation to five pages: Search, Settings, Ingredients, Glass, and Cocktail Type.
 
+- **Splash Screen:**
+  Contains the application logo and name. It is displayed for 2 seconds before navigating to the Home page.
+
 - **Home Page:**
   Contains a random cocktail suggestion, a list of the most recently viewed cocktails, and a list of cocktail categories. Tapping on a cocktail image navigates to the Cocktail Details page where details can be viewed and the cocktail can be added to favorites.
+
+![Home Page](images/home.jpg)
 
 - **Favorites Page:**
   Contains a list of favorite cocktails.
