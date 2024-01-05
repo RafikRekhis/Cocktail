@@ -80,6 +80,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun onResponse() {
+        binding.homeProgressCircle.visibility = View.GONE
         binding.randomCocktailImage.visibility = View.VISIBLE
         binding.categoriesTextview.visibility = View.VISIBLE
         binding.categoriesRecyclerview.visibility = View.VISIBLE
