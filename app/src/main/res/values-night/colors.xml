@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <color name="background">#47203C</color>
+    <color name="text_color">#FFFFFF</color>
+    <color name="primary_dark">#47203C</color>
+    <color name="top_bar_background">#2B1324</color>
+    <color name="bottom_bar_background">#2B1324</color>
+    <color name="categories_card_background">#643E59</color>
+    <color name="categories_card_text">#FFFFFF</color>
+    <color name="accent">#FFFFFF</color>
+
+    <color name="options_menu_background">#643E59</color>
+    <color name="options_menu_text"> #FFFFFFFF </color>
+    <color name="category_arrow">#FFFFFFFF</color>
+    <color name="cocktail_details_titles">#DF5BBB</color>
+    <color name="cocktail_details_text">#FFFFFFFF</color>
+    <color name="cocktail_details_icons">#FFFFFFFF</color>
+    <color name="favorite_icon_background">#DF5BBB</color>
+    <color name="popup_button_background_color">#FFFFFFFF</color>
+    <color name="popup_button_text_color">#FF000000</color>
+    <color name="popup_text_color">#FFFFFFFF</color>
+
+<color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+
+    <color name="primary">#1ab326</color>
+
+
+
+    <color name="g_black">#33405f</color>
+    <color name="g_grey">#FFFFFF</color>
+
+    <color name="red">#FF0000</color>
+
+    <color name="SplashScrene">#542F4A</color>
+
+    <color name="violet">#49223F</color>
+    <color name="violet_dark">#47203C</color>
+
+    <color name="Fandango">#B34C96</color>
+
+</resources>
